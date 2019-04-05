@@ -1,0 +1,114 @@
+﻿1. Adicionar ao elemento nav as classes navbar, navbar-light e bg-light.
+
+2. Acrescentar uma div com a classe container envolvendo todos os elementos existentes dentro do elemento nav.
+
+3. Acrescentar à âncora Rio Turismo a classe navbar-brand.
+
+4. Substituir o texto 'Rio Turismo' pela imagem Rio-Turismo.png que deverá ter a largura (width) de 90 px.
+
+5. Acrescentar às classes nav-link e nav-item a todas as âncoras não comentadas da barra de navegação, excetuando apenas o navbar-brand.
+
+6. Acrescentar uma div com a classe navbar-nav envolvendo todas as âncoras de Passeios até Contato.   
+
+7. Acrescentar uma div com a classe navbar-nav envolvendo as âncoras Meus Pedidos e Entrar.   
+
+8. Acrescente a classe mr-auto à div definida acima.
+
+9. Acrescentar ao elemento nav a classe navbar-expand-md.
+
+10. Acrescentar o elemento button com a classe navbar-toggler logo abaixo do 'brand'. Adicionar a este elemento os    atributos abaixo com seus respectivos valores:
+    
+    type="button" 
+    data-toggle="collapse" 
+    data-target="#menu" 
+    aria-controls="menu"
+    aria-expanded="false" 
+    aria-label="Botão de navegação"
+
+11. Acrescente como label do botão o elemento span abaixo:
+
+    <span class="navbar-toggler-icon"></span>
+
+12. Criar uma div com a classe collapse navbar-collapse envolvendo as duas divs acima com a classe navbar-nav e definir para esta div o atributo id com o valor 'menu'.
+
+13. Envolver as âncoras comentadas de Passeios Culturais com uma div com a classe dropdown-menu.
+
+14. Acrescentar a classe dropdown-toggle e o atributo data-toggle com o valor dropdown à âncora Passeios Culturais.
+
+15. Acrescentar a cada uma das 4 ângoras que estavam comentadas a classe dropdown-item.
+
+16. Envolver com uma div a âncora Passeios Culturais e seus 4 submenus. Acrescentar a classe dropdown a esta div.
+
+17. Adicionar um ícone da biblioteca font-awesome ao item de menu 'Entrar':
+    a) Acessar getBootstrap.com / extend / icons / Font Awesome / Start Using Free / Download / Font Awesome Free for the Web
+    b) Efetuar o download do arquivo .zip
+    c) Acrescentar na pasta assets/css o arquivo all.css
+    d) Copiar a pasta webfonts contida no arquivo .zip para dentro da pasta assets
+    e) Acessar https://fontawesome.com/ e clicar em Free icons
+    f) Pesquisar por login ou sign-in
+    g) Clicar no ícone desejado
+    h) No topo da página clicar em <i class="fas fa-sign-in-alt"></i>
+    i) Na opção de menu Entrar, colar o código copiado e acrescentar um espaço em branco para que o ícone não fique colado no texto        (Entrar).
+
+18. Acrescentar a classe fixed-top ao elemento nav. Ao salvar, observe que o topo da imagem que vem logo abaixo da barra de navegação desaparece (entra por baixo da barra de navegação).
+
+19. Comentar o elemento img e acrescentar um elemento header com a classe bgimage.
+
+20. Acessar o arquivo assets/css/styles.css e remover o comentário para a classe .bgimage.
+
+21. Acrescentar uma margin top de 69 pixels ao elemento header e fazer com que esta imagem só seja exibida no modo medium em diante.
+
+22. Abaixo da imagem, acrescentar uma div com a classe jumbotron que deverá ser exibida apenas nos modos extra-small e small. Acrescentar a esta div uma margin-top de 90 pixels. Avaliar a possibilidade de se alterar o padding definido para a classe jumbotron. Acrescentar o código abaixo a esta div:
+
+      <span class="font-weight-bold" style="font-size: 18px;">
+         Empresa especializada em passeios e excursões no estado do Rio de Janeiro.
+      </span>
+      <br>
+      <br>
+      <span style="font-size: 16px;">
+         Veja abaixo os passeios mais solicitados pelos nossos clientes.
+      </span>
+
+23. Acrescentar a classe text-center à div acima.
+
+23. Incluir uma div com a classe container em torno da div com a classe jumbotron acima. O tag de fechamento desta div deve ser posicionado logo antes do elemento <h5>Nossas Excursões</h5>.
+
+24. Para cada um dos passeios criar um card com as seguintes características:
+
+    a) Imagem fora do card-body
+    b) Div card-body abaixo da imagem
+       b.1) Título com a classe card-title           - Texto centralizado
+       b.2) Parágrafo curto com a classe card-text   - Texto centralizado
+       b.3) Parágrafo longo                          - Texto 'justified'
+    c) div com a classe card-footer
+       Botão alinhado à direita
+
+25. Acrescentar as classes row, col-md-4 e col-sm-6
+
+26. Acrescentar tooltip e popover
+
+    <a href="#" data-toggle="tooltip" data-placement="top" title="Tom Jobim: Copacabana, princesinha do mar Pelas manhãs tu és a vida a cantar E a tardinha o sol poente
+        Deixa sempre uma saudade na gente">"Princesinha do Mar"</a>
+
+    <a tabindex="0" data-trigger="focus"
+       data-toggle="popover"
+       data-title="007 contra o Foguete da Morte"
+       data-placement="bottom"
+       data-content="Filme franco-britânico de acção, aventura, espionagem e ficção científica de 1979, o 11.º da série
+       James Bond com Roger Moore no papel do agente secreto.">007 contra o Foguete da Morte</a>
+
+27. Retire os comentários no arquivo js/script.js referentes a tooltip e popover.
+
+28. Recuperar do site do bootstrap um accordion para as 3 excursões:
+
+    Editar o accordion para as 3 excursões: Ilha Grande, Paraty e Buzios.
+    
+    
+29. Recuperar do bootstrap um exemplo de uso da classe media alinhando a imagem ao topo.
+
+    Editar as divs com a classe media para as 4 imagens da ilha grande:
+    - vila do Abraão
+    - Lagoa Azul
+    - Lopes Mendes 
+    - Praia do Aventureiro 
+

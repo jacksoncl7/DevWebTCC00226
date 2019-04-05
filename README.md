@@ -10,6 +10,7 @@ Consta como conteúdo:
 Conteúdo           - Ferramenta Adotada
 
 Noções de Frontend - HTML CSS JS (ferramentas de apoio JQuery e Bootstrap)
+
 Noções de Backend  - Django 2.x
 
 No diretório 'frist_work' há o passo introdutório as técnologias de frontend.
