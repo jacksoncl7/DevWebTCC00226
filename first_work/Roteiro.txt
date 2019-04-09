@@ -8,21 +8,21 @@
 
 5. Acrescentar às classes nav-link e nav-item a todas as âncoras não comentadas da barra de navegação, excetuando apenas o navbar-brand.
 
-6. Acrescentar uma div com a classe navbar-nav envolvendo todas as âncoras de Passeios até Contato.   
+6. Acrescentar uma div com a classe navbar-nav envolvendo todas as âncoras de Passeios até Contato.
 
-7. Acrescentar uma div com a classe navbar-nav envolvendo as âncoras Meus Pedidos e Entrar.   
+7. Acrescentar uma div com a classe navbar-nav envolvendo as âncoras Meus Pedidos e Entrar.
 
 8. Acrescente a classe mr-auto à div definida acima.
 
 9. Acrescentar ao elemento nav a classe navbar-expand-md.
 
 10. Acrescentar o elemento button com a classe navbar-toggler logo abaixo do 'brand'. Adicionar a este elemento os    atributos abaixo com seus respectivos valores:
-    
-    type="button" 
-    data-toggle="collapse" 
-    data-target="#menu" 
+
+    type="button"
+    data-toggle="collapse"
+    data-target="#menu"
     aria-controls="menu"
-    aria-expanded="false" 
+    aria-expanded="false"
     aria-label="Botão de navegação"
 
 11. Acrescente como label do botão o elemento span abaixo:
@@ -102,13 +102,12 @@
 28. Recuperar do site do bootstrap um accordion para as 3 excursões:
 
     Editar o accordion para as 3 excursões: Ilha Grande, Paraty e Buzios.
-    
-    
+
+
 29. Recuperar do bootstrap um exemplo de uso da classe media alinhando a imagem ao topo.
 
     Editar as divs com a classe media para as 4 imagens da ilha grande:
     - vila do Abraão
     - Lagoa Azul
-    - Lopes Mendes 
-    - Praia do Aventureiro 
-
+    - Lopes Mendes
+    - Praia do Aventureiro

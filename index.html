@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <link href="assets/css/bootstrap.css" rel="stylesheet">
+   <link href="assets/css/all.css" rel="stylesheet">
+   <link href="assets/css/styles.css" rel="stylesheet">
+   <title>Bootstrap</title>
+</head>
+
+<body>
+   <nav class="navbar navbar-light bg-light navbar-expand-md fixed-top">
+      <div class="container">
+         <a class="navbar-brand" href="#">
+            <img style="width: 90px;" src="assets/images/Rio-Turismo.png" alt="Rio Turismo">
+         </a>
+         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#menu" aria-controls="menu"
+            aria-expanded="false" aria-label="Botão de navegação">
+            <span class="navbar-toggler-icon"></span>
+         </button>
+
+         <div class="collapse navbar-collapse" id="menu">
+            <div class="navbar-nav mr-auto">
+               <a class="nav-link nav-item" href="#passeios">Passeios</a>
+               <a class="nav-link nav-item" href="#excursoes">Excursões</a>
+               <div class="dropdown">
+                  <a class="nav-link nav-item dropdown-toggle" data-toggle="dropdown" href="#">Passeios Culturais</a>
+                  <div class="dropdown-menu">
+                     <a class="dropdown-item" href="#">Museus</a>
+                     <a class="dropdown-item" href="#">Feiras</a>
+                     <a class="dropdown-item" href="#">Bibliotecas</a>
+                     <a class="dropdown-item" href="#">Livrarias</a>
+                  </div>
+               </div>
+               <a class="nav-link nav-item" href="#reserva" data-toggle="modal">Reservas</a>
+               <a class="nav-link nav-item" href="#header">Contato</a>
+            </div>
+
+            <div class="navbar-nav">
+               <a class="nav-link nav-item" href="#pedidos">Meus Pedidos</a>
+               <a class="nav-link nav-item" href="#janelamodal">
+                  <i class="fas fa-sign-in-alt"></i>
+                  Entrar
+               </a>
+            </div>
+         </div>
+      </div>
+   </nav>
+
+   <!-- <img src="assets/images/panoramica1.jpg"> -->
+
+   <header class="bgimage d-none d-md-block"></header>
+
+   <div class="container">
+      <div class="jumbotron d-block d-md-none text-center" style="margin-top: 90px;">
+         <span class="font-weight-bold" style="font-size: 18px;">
+            Empresa especializada em passeios e excursões no estado do Rio de Janeiro.
+         </span>
+         <br>
+         <br>
+         <span style="font-size: 16px;">
+            Veja abaixo os passeios mais solicitados pelos nossos clientes.
+         </span>
+      </div>
+
+      <h4 id="passeios" class="mt-4 mb-3">Nossos Passeios</h4>
+
+      <div class="row">
+         <div class="col-md-6 col-lg-4">
+            <div class="card mb-3">
+               <img class="card-img-top" src="assets/images/p-ciclovia.jpg" alt="Ciclovias">
+               <div class="card-body">
+                  <div class="text-center">
+                     <h5 class="card-title">Ciclovias da Cidade</h5>
+                     <p class="text-warning font-weight-bolder">Passeio diário</p>
+                  </div>
+                  <p class="card-text text-justify">O Rio possui uma extensa malha de ciclovias. As principais vias
+                     começam na Marina da Glória,
+                     próxima ao centro da Cidade, passando por toda a Zona Sul até o Leblon.</p>
+               </div>
+               <div class="card-footer">
+                  <div class="text-right">
+                     <button class="btn btn-outline-primary">Mais informações...</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <div class="col-md-6 col-lg-4">
+            <div class="card mb-3">
+               <img class="card-img-top" src="assets/images/p-copacabana.jpg" alt="Copacabana">
+               <div class="card-body">
+                  <div class="text-center">
+                     <h5 class="card-title">Copacabana</h5>
+                     <p class="text-warning font-weight-bolder">Passeio terças e quintas</p>
+                  </div>
+                  <p class="card-text text-justify">Copacabana que é também
+                     conhecida como
+                     <a href="#" onclick="return false;" data-toggle="tooltip" data-placement="top" title="Tom Jobim: Copacabana, princesinha do mar 
+                        Pelas manhãs tu és a vida a cantar 
+                        E a tardinha o sol poente
+                        Deixa sempre uma saudade na gente">"Princesinha do Mar"</a>
+                     em função de uma famosa canção em sua homenagem, é um dos locais
+                     mais conhecidos do Brasil e do mundo.</p>
+               </div>
+               <div class="card-footer">
+                  <div class="text-right">
+                     <button class="btn btn-outline-primary">Mais informações...</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <div class="col-md-6 col-lg-4">
+            <div class="card mb-3">
+               <img class="card-img-top" src="assets/images/p-cristo-redentor.jpg" alt="Cristo Redentor">
+               <div class="card-body">
+                  <div class="text-center">
+                     <h5 class="card-title">Cristo Redentor</h5>
+                     <p class="text-warning font-weight-bolder">Passeio diário</p>
+                  </div>
+                  <p class="card-text text-justify">Entre os principais pontos turísticos da cidade, estão o Corcovado,
+                     com a estátuado Cristo
+                     Redentor e o Pão de açucar. Ambos fornecem uma vista magnifíca da cidade.</p>
+               </div>
+               <div class="card-footer">
+                  <div class="text-right">
+                     <button class="btn btn-outline-primary">Mais informações...</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <div class="col-md-6 col-lg-4">
+            <div class="card mb-3">
+               <img class="card-img-top" src="assets/images/p-arcos-da-lapa.jpg" alt="Arcos da Lapa">
+               <div class="card-body">
+                  <div class="text-center">
+                     <h5 class="card-title">Arcos da Lapa</h5>
+                     <p class="text-warning font-weight-bolder">Passeio diário</p>
+                  </div>
+                  <p class="card-text text-justify">A Lapa é dos locais noturnos mais conhecidos do Rio. É super
+                     democrático, rico em
+                     diversidade e abriga todas as tribos. Lá podemos encontrar bons restaurantes e
+                     bares, alguns com música ao vivo e muita concentração de jovens.</p>
+               </div>
+               <div class="card-footer">
+                  <div class="text-right">
+                     <button class="btn btn-outline-primary">Mais informações...</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <div class="col-md-6 col-lg-4">
+            <div class="card mb-3">
+               <img class="card-img-top" src="assets/images/p-maracana.jpg" alt="Maracanã">
+               <div class="card-body">
+                  <div class="text-center">
+                     <h5 class="card-title">Maracanã</h5>
+                     <p class="text-warning font-weight-bolder">Passeio diário</p>
+                  </div>
+                  <p class="card-text text-justify">Construído para abrigar a Copa do Mundo de 1950, vencida pelo
+                     Uruguai, o
+                     Maracanã já foi o maior estádio de futebol do mundo, mas perdeu este status em reforma recente.
+                     Visitá-lo, especialmente em dias de jogos, pode ser algo inesquecível.</p>
+               </div>
+               <div class="card-footer">
+                  <div class="text-right">
+                     <button class="btn btn-outline-primary">Mais informações...</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <div class="col-md-6 col-lg-4">
+            <div class="card mb-3">
+               <img class="card-img-top" src="assets/images/p-pao-de-acucar.jpg" alt="Pão de Açucar">
+               <div class="card-body">
+                  <div class="text-center">
+                     <h5 class="card-title">Pão de Açucar</h5>
+                     <p class="text-warning font-weight-bolder">Passeio diário</p>
+                  </div>
+                  <p class="card-text text-justify">Localizado no bairro da Urca, o bondinho é uma das principais
+                     atrações turísticas da cidade.
+                     Liga a Praia Vermelha ao morro da Urca e
+                     ao morro do Pão de açúcar. O bondinho foi cenário do filme
+                     <a href="#" onclick="return false;" tabindex="0" data-trigger="focus" data-toggle="popover"
+                        data-title="007 contra o Foguete da Morte" data-placement="bottom" data-content="Filme franco-britânico de acção, aventura, 
+                        espionagem e ficção científica de 1979, o 11.º da série
+                        James Bond com Roger Moore no papel do 
+                        agente secreto.">007 contra o Foguete da Morte</a>, de 1979.</p>
+               </div>
+               <div class="card-footer">
+                  <div class="text-right">
+                     <button class="btn btn-outline-primary">Mais informações...</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <h4 id="excursoes" class="mt-4 mb-3">Nossas Excursões</h4>
+
+      <div class="accordion" id="accordion">
+         <div class="card">
+            <div class="card-header" id="card-header-ilha" style="padding-top: 6px; padding-bottom: 6px;">
+               <h2 class="mb-0">
+                  <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#ilha-grande"
+                     aria-expanded="true" aria-controls="ilha-grande">
+                     Ilha Grande
+                  </button>
+               </h2>
+            </div>
+
+            <div id="ilha-grande" class="collapse show" aria-labelledby="card-header-ilha" data-parent="#accordion">
+               <div class="card-body">
+                  <div class="row">
+                     <div class="col-lg-6">
+                        <div class="media">
+                           <img src="assets/images/e-vila-abraao.jpg" class="mr-3" alt="Vila do Abraão">
+                           <div class="media-body">
+                              <h5 class="mt-0">Vila do Abraão</h5>
+                              <div class="texto-media-body">
+                                 <span>É o principal local de chegada à Ilha Grande.
+                                    Lá você encontra pousadas, campings, restaurantes, etc.</span>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-6">
+                        <div class="media">
+                           <img src="assets/images/e-lagoa-azul.jpg" class="mr-3" alt="Vila do Abraão">
+                           <div class="media-body">
+                              <h5 class="mt-0">Lagoa Azul</h5>
+                              <div class="texto-media-body">
+                                 <span>Um local muito lindo com água azul turquesa
+                                    e muitos peixes. Só é possível chegar lá de barco.</span>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-6">
+                        <div class="media">
+                           <img src="assets/images/e-lopes-mendes.jpg" class="mr-3" alt="Vila do Abraão">
+                           <div class="media-body">
+                              <h5 class="mt-0">Lopes Mendes</h5>
+                              <div class="texto-media-body">
+                                 <span>Uma das mais bonitas da Ilha Grande.
+                                    A praia mede 600 metros e o mar é ótimo para a prática do Surf.</span>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-6">
+                        <div class="media">
+                           <img src="assets/images/e-praia-do-aventureiro.jpg" class="mr-3" alt="Vila do Abraão">
+                           <div class="media-body">
+                              <h5 class="mt-0">Praia do Aventureiro</h5>
+                              <div class="texto-media-body">
+                                 <span>A mais famosa praia da Ilha Grande. São 3 km
+                                    de areia muito branca e água cristalina.</span>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <button type="button" class="btn btn-outline-primary btn-block">Mais Informações</button>
+                  <a class="btn btn-secondary btn-block" href="cadastro.html">Contratar</a>
+               </div>
+            </div>
+         </div>
+         <div class="card">
+            <div class="card-header" id="card-header-paraty" style="padding-top: 6px; padding-bottom: 6px;">
+               <h2 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#paraty"
+                     aria-expanded="false" aria-controls="paraty">
+                     Paraty
+                  </button>
+               </h2>
+            </div>
+            <div id="paraty" class="collapse" aria-labelledby="card-header-paraty" data-parent="#accordion">
+               <div class="card-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
+                  moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
+                  Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
+                  shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea
+                  proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim
+                  aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+               </div>
+            </div>
+         </div>
+         <div class="card">
+            <div class="card-header" id="card-header-buzios" style="padding-top: 6px; padding-bottom: 6px;">
+               <h2 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#buzios"
+                     aria-expanded="false" aria-controls="buzios">
+                     Buzios e Arrail do cabo
+                  </button>
+               </h2>
+            </div>
+            <div id="buzios" class="collapse" aria-labelledby="card-header-buzios" data-parent="#accordion">
+               <div class="card-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
+                  moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
+                  Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
+                  shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea
+                  proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim
+                  aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <br>
+      <br>
+
+      <h4>Depoimentos sobre Excursões</h4>
+
+      <p>Adipisci veritatis esse expedita odit neque quam! Repellat
+         quas ad cum porro amet, maiores, dolores in magni ea enim. Commodi
+         quidem consequuntur animi pariatur cumque distinctio.</p>
+      Luis Gustavo Pereira Filho
+
+      <p>Sed ut perspiciatis unde omnis iste natus error sit
+         voluptatem accusantium doloremque laudantium, totam rem aperiam,
+         eaque ipsa quae ab illo inventore veritatis et quasi architecto.</p>
+      Sergio albuquerque
+
+      <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur
+         aut odit aut fugit, sed quia consequuntur magni dolores eos qui
+         ratione voluptatem sequi nesciunt.</p>
+      Pedro arnaldo Soares
+
+      <br>
+      <br>
+   </div>
+   <h5>Nossas Excursões</h5>
+   <ul>
+      <li><i>Baia da </i><a href='#excursoes'> Ilha Grande</a></li>
+      <li><a href='#excursoes'>Paraty</a></li>
+      <li><a href='#excursoes'>Búzios e arraial do Cabo</a></li>
+   </ul>
+
+   <h5>Passeios</h5>
+   <ul>
+      <li><a href='#'>Ciclovias</a></li>
+      <li><a href='#'>Copacabana</a></li>
+      <li><a href='#'>Cristo Redentor</a></li>
+      <li><a href='#'>Pão de Açucar</a></li>
+      <li><a href='#'>Maracanã</a></li>
+      <li><a href='#'>Arcos da Lapa</a></li>
+   </ul>
+
+   <h5>Passeios Culturais</h5>
+   <ul>
+      <li><a href='#'>Museus</a></li>
+      <li><a href='#'>Feiras</a></li>
+      <li><a href='#'>Bibliotecas</a></li>
+      <li><a href='#'>Livrarias</a></li>
+   </ul>
+
+   <h5>Contato</h5>
+   <ul>
+      <li>Joana</li>
+      <li>(99)99999-9999</li>
+      <li><a href='mailto:popo@pb.dum.br'>popo@pb.dum.br</a>
+      </li>
+   </ul>
+
+   <script src="assets/js/jquery-3.3.1.js"></script>
+   <script src="assets/js/popper.js"></script>
+   <script src="assets/js/bootstrap.js"></script>
+   <script src="assets/js/script.js"></script>
+</body>
+
+</html>
