@@ -165,3 +165,8 @@ color: #639bcf; - Azul */
       font-size: 15px;
    }
 }
+
+.carousel-text h5 h6{
+  font-size: 60px;
+  margin-bottom: 100px;
+}

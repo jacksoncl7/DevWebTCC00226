@@ -34,8 +34,8 @@
               <a class="dropdown-item" href="#">Livrarias</a>
             </div>
           </div>
-          <a class="nav-link nav-item" href="#">Reservas</a>
-          <a class="nav-link nav-item" href="#header">Contato</a>
+          <a class="nav-link nav-item" href="#" data-toggle="modal" data-target="#ReservaModal">Reservas</a>
+          <!-- <a class="nav-link nav-item" href="#header">Contato</a> -->
         </div>
 
         <div class="navbar-nav">
@@ -48,6 +48,116 @@
       </div>
     </div>
   </nav>
+  <!-- inicio janela modal -->
+  <div class="modal fade" id="ReservaModal" tabindex="-1" role="dialog" aria-labelledby="ReservaModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ReservaModalLabel">Solicitação de Reserva</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="id_form" action="">
+            <fieldset class="form-group">
+              <legend class="font-weight-bold">Informações Pessoais</legend>
+
+              <div class="form-group row">
+                <label for="nome" class="col-form-label col-lg-2 text-left text-lg-right">Nome</label>
+                <div class="col-lg-10">
+                  <input type="text" class="form-control" id="nome" placeholder="Informe seu nome">
+                  <div id="feedback-nome" class="invalid-feedback d-none">
+                    Este campo deve ser informado.
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-form-label col-lg-2 text-left text-lg-right">Sexo</label>
+                <div class="col-lg-10">
+                  <div class="form-check">
+                    <input id="sexo-masc" type="radio" name="sexo" value"M" class="form-check-input">
+                    <label for="sexo-masc" class="form-check-label">
+                      Masculino
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input id="sexo-fem" type="radio" name="sexo" value"F" class="form-check-input">
+                    <label for="sexo-fem" class="form-check-label">
+                      Feminino
+                    </label>
+                  </div>
+                  <div id="feedback-sexo" class="invalid-feedback">
+                    Este campo deve ser informado.
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset class="form-group" style="margin-bottom: 0px;">
+              <legend class="font-weight-bold">Informações do Passeio/Excursão</legend>
+              <div class="form-group row">
+                <label for="passeio1" class="col-form-label col-lg-2 text-left text-lg-right">Passeio</label>
+                <div class="col-lg-10">
+                  <select class="form-control" id="passeio1">
+                    <option selected value="">--- selecione um passeio ---</option>
+                    <option value="1">Arcos da Lapa</option>
+                    <option value="2">Ciclovia</option>
+                    <option value="3">Copacabana</option>
+                    <option value="4">Cristo Redentor</option>
+                    <option value="5">Maracanã</option>
+                    <option value="6">Pão de Açucar</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="passeio2" class="col-form-label col-lg-2 text-left text-lg-right">Passeio</label>
+                <div class="col-lg-10">
+                  <select class="form-control" id="passeio2" multiple>
+                    <option value="1">Arcos da Lapa</option>
+                    <option value="2">Ciclovia</option>
+                    <option value="3">Copacabana</option>
+                    <option value="4">Cristo Redentor</option>
+                    <option value="5">Maracanã</option>
+                    <option value="6">Pão de Açucar</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-form-label col-lg-2 text-left text-lg-right">Excursão</label>
+                <div class="col-lg-10">
+                  <div class="form-check">
+                    <input id="ilha-grande" type="checkbox" name="ilha" class="form-check-input">
+                    <label for="ilha-grande" class="form-check-label">
+                      Ilha Grande
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input id="paraty" type="checkbox" name="paraty" class="form-check-input">
+                    <label for="paraty" class="form-check-label">
+                      Paraty
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input id="buzios" type="checkbox" name="buzios" class="form-check-input">
+                    <label for="buzios" class="form-check-label">
+                      Buzios e Arraial do Cabo
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <div class="form-group row">
+              <div class="col-lg-10 offset-lg-2">
+                <button type="submit" class="btn btn-primary btn-sm">
+                  Enviar
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div> <!-- fim da janela modal -->
 
   <header class="d-none d-md-block mt-5">
     <div id="rio-turismo-carousel" class="carousel slide" data-ride="carousel">
@@ -59,17 +169,17 @@
         <div class="carousel-item active">
           <img src="./assets/images/panoramica1.jpg" class="d-block w-100" alt="vista panoramica do rio de janeiro">
           <div class="carousel-caption d-none d-md-block">
-            <div class="text-left">
-              <h5>Os Melhores Passeios e Excursões no Rio de Janeiro.</h5>
-              <h6>Venha curtir com a gente!</h6>
+            <div class="text-center carousel-text" style="margin-bottom:110px;">
+              <h5 style="font-size:35px;">Os Melhores Passeios e Excursões no Rio de Janeiro.</h5>
+              <h6 style="font-size:35px;" class="text-left ml-5">Venha curtir com a gente!</h6>
             </div>
           </div>
         </div>
         <div class="carousel-item">
           <img src="./assets/images/panoramica2.jpg" class="d-block w-100" alt="vista panoramica do rio de janeiro">
           <div class="carousel-caption d-none d-md-block">
-            <div class="text-left" style="font-size: large;">
-              <h5>Parcele seus passeios e excursões em 10x sem juros!</h5>
+            <div class="text-center" style="margin-bottom:150px">
+              <h5 style="font-size:35px;">Parcele seus passeios e excursões em 10x sem juros!</h5>
             </div>
           </div>
         </div>
@@ -84,7 +194,7 @@
       </a>
     </div>
   </header>
-  <div class="container">
+  <div class="container ">
     <div class="jumbotron d-block d-md-none text-center" style="margin-top: 90px;">
       <span class="font-weight-bold" style="font-size: 18px;">
         Empresa especializada em passeios e excursões no estado do Rio de Janeiro.
@@ -313,7 +423,7 @@
                   ducimus qui blanditiis praesentium voluptatum deleniti atque
                   corrupti quos dolores et quas molestias excepturi sint
                   occaecati.</p>
-                <span><strong> <a href="#">Quaerat voluptatem!</a> </strong></span>
+                <span><strong> <a href="javascript:void(0)" style="color:black;">Quaerat voluptatem!</a> </strong></span>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -354,47 +464,48 @@
     </div>
 
     <!-- depois é uma jumbotron -->
-    <h4 class="mb-3">Depoimentos sobre Excursões</h4>
-    <div class="row">
-      <div class="col-lg-6">
-        <blockquote class="blockquote">
-          <p>Adipisci veritatis esse expedita odit neque quam! Repellat
-            quas ad cum porro amet, maiores, dolores in magni ea enim. Commodi
-            quidem consequuntur animi pariatur cumque distinctio.</p>
-          <div class="blockquote-footer">
-            Luis Gustavo Pereira Filho
+    <div class="jumbotron jumbotron-fluid mb-3">
+      <div class="container">
+        <h4 class="mb-3">Depoimentos sobre Excursões</h4>
+        <div class="row">
+          <div class="col-lg-6">
+            <blockquote class="blockquote">
+              <p>Adipisci veritatis esse expedita odit neque quam! Repellat
+                quas ad cum porro amet, maiores, dolores in magni ea enim. Commodi
+                quidem consequuntur animi pariatur cumque distinctio.</p>
+              <div class="blockquote-footer">
+                Luis Gustavo Pereira Filho
+              </div>
+            </blockquote>
           </div>
-        </blockquote>
-      </div>
-      <div class="col-lg-6">
-        <blockquote class="blockquote">
-          <p>Sed ut perspiciatis unde omnis iste natus error sit
-            voluptatem accusantium doloremque laudantium, totam rem aperiam,
-            eaque ipsa quae ab illo inventore veritatis et quasi architecto.</p>
-          <div class="blockquote-footer">
-            Sergio albuquerque
+          <div class="col-lg-6">
+            <blockquote class="blockquote">
+              <p>Sed ut perspiciatis unde omnis iste natus error sit
+                voluptatem accusantium doloremque laudantium, totam rem aperiam,
+                eaque ipsa quae ab illo inventore veritatis et quasi architecto.</p>
+              <div class="blockquote-footer">
+                Sergio albuquerque
+              </div>
+            </blockquote>
           </div>
-        </blockquote>
-      </div>
-      <div class="col-lg-6">
-        <blockquote class="blockquote">
-          <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur
-            aut odit aut fugit, sed quia consequuntur magni dolores eos qui
-            ratione voluptatem sequi nesciunt.</p>
-          <div class="blockquote-footer">
-            Pedro arnaldo Soares
+          <div class="col-lg-6">
+            <blockquote class="blockquote">
+              <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur
+                aut odit aut fugit, sed quia consequuntur magni dolores eos qui
+                ratione voluptatem sequi nesciunt.</p>
+              <div class="blockquote-footer">
+                Pedro arnaldo Soares
+              </div>
+            </blockquote>
           </div>
-        </blockquote>
+        </div>
       </div>
     </div>
   </div>
-
   <div class="footer">
     <div class="container">
       <div class="row">
         <div class="col-lg-3 col-sm-6">
-
-
           <h5>Nossas Excursões</h5>
           <ul class="list-unstyled">
             <li><i>Baia da </i><a href='#excursoes'> Ilha Grande</a></li>
