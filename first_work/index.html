@@ -218,13 +218,20 @@
                 <h5 class="card-title">Ciclovias da Cidade</h5>
                 <p class="text-warning font-weight-bolder">Passeio diário</p>
               </div>
+              <div class="text-center">
+                <span id="like" data-like="8"></span>
+                <a id="pos" href="#passeios" style="text-decoration: none"><i id="ipos" class="far fa-thumbs-up"></i></a>
+                &nbsp;
+                <a id="neg" href="#passeios" style="text-decoration: none"><i id="ineg" class="far fa-thumbs-down"></i></a>
+                <span id="dislike" data-dislike="3"></span>
+              </div>
               <p class="card-text text-justify">O Rio possui uma extensa malha de ciclovias. As principais vias
                 começam na Marina da Glória,
                 próxima ao centro da Cidade, passando por toda a Zona Sul até o Leblon.</p>
             </div>
             <div class="card-footer">
               <div class="text-right">
-                <button class="btn btn-outline-primary">Mais informações...</button>
+                <button id="btn1" class="btn btn-outline-primary">Mais informações...</button>
               </div>
             </div>
           </div>
@@ -462,8 +469,6 @@
         </div>
       </div>
     </div>
-
-    <!-- depois é uma jumbotron -->
     <div class="jumbotron jumbotron-fluid mb-3">
       <div class="container">
         <h4 class="mb-3">Depoimentos sobre Excursões</h4>
