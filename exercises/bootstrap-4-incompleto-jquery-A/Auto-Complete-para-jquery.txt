@@ -1,0 +1,29 @@
+Roteiro para instalar o autocomplete para o jquery:
+---------------------------------------------------
+
+1. Instale o Node (node.org)
+
+No seu projeto pressione CTRL + '  para abrir o Terminal
+
+2. npm install tsd -g
+3. npm install typings -g
+4. typings install dt~jquery --global
+
+Irá aparecer a pasta typings no seu projeto
+
+Copie a única linha que existirá no arquivo index.ds.ts (este arquivo está imediatamente dentro da pasta typings), isto é, NÃO é o arquivo que está dentro da pasta typings/global/jquery. 
+
+Copie esta linha:
+
+/// <reference path="globals/jquery/index.d.ts" />
+
+Faça a seguinte alteração:
+
+// <reference path="../typings/globals/jquery/index.d.ts" />
+
+Observe as mudanças:
+
+1. Comentário com //
+2. path alterado para ../typings/
+
+Copie esta linha para o arquivo .js onde você está escrevendo o código jquery do seu projeto.

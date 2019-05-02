@@ -1,0 +1,24 @@
+1. Substituir document.querySelector por $
+   Substituir document.querySelectorAll por $
+
+2. Substituir:
+
+   document.querySelector("#nome").addEventListener("blur", validaNomeFunction , false);
+
+   por
+
+   $("#nome").blur(function() { validaNomeFunction(); });
+
+3. Substituir para as classes is-valid, is-invalid e d-none:
+
+   classList.add('.umaClasse') por
+
+   addClass('.umaClasse')
+
+4. Substituir:
+
+   classList.remove('.umaClasse') por
+
+   removeClass('.umaClasse')
+
+5. Substituir .value por .val()
