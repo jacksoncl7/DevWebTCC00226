@@ -15,30 +15,44 @@ $(function() {
     $("#like").addClass("badge badge-light").html(num_like);
     $("#dislike").addClass("badge badge-light").html(num_dislike);
     $("#pos").click(function() {
-      if ($('#ineg').hasClass('far')) {
-        $('#ineg').removeClass('fas');
-        num_dislike = num_dislike - 1;
-        }
-      if ($('#ipos').hasClass('fas')) {
+      if ($('#ineg').hasClass('far') && $('#ipos').hasClass('fas')) {
         $('#ipos').removeClass('fas');
-        num_like = num_like - 1;
-      } else {
+        $('#ipos').addClass('far');
+        num_like -= 1;
+      } else if ($('#ineg').hasClass('far') && $('#ipos').hasClass('far')) {
+        $('#ipos').removeClass('far');
         $('#ipos').addClass('fas');
-        num_like = num_like + 1;
+        num_like += 1;
+      } else if ($('#ineg').hasClass('fas') && $('#ipos').hasClass('far')) {
+        $('#ineg').removeClass('fas');
+        $('#ineg').addClass('far');
+        $('#ipos').removeClass('far');
+        $('#ipos').addClass('fas');
+        num_like += 1;
+        num_dislike -= 1;
       }
+      $("#like").addClass("badge badge-light").html(num_like);
+      $("#dislike").addClass("badge badge-light").html(num_dislike);
     });
     $('#neg').click(function() {
-      if ($('#ipos').hasClass('far')) {
-        $('#ipos').removeClass('fas');
-        num_like = num_like - 1
-        }
-      if ($('#ineg').hasClass('fas')) {
-        $('#ineg').removeClass('fas');
-        num_dislike = num_dislike - 1
-      } else {
+      if ($('#ineg').hasClass('far') && $('#ipos').hasClass('far')) {
+        $('#ineg').removeClass('far');
         $('#ineg').addClass('fas');
-        num_dislike = num_dislike + 1
+        num_dislike += 1;
+      } else if ($('#ineg').hasClass('fas') && $('#ipos').hasClass('far')) {
+        $('#ineg').removeClass('fas');
+        $('#ineg').addClass('far');
+        num_dislike -= 1;
+      } else if ($('#ineg').hasClass('far') && $('#ipos').hasClass('fas')) {
+        $('#ineg').removeClass('far');
+        $('#ineg').addClass('fas');
+        $('#ipos').removeClass('fas');
+        $('#ipos').addClass('far');
+        num_dislike += 1;
+        num_like -= 1;
       }
+      $("#like").addClass("badge badge-light").html(num_like);
+      $("#dislike").addClass("badge badge-light").html(num_dislike);
     });
   }
   // 18:15 SPA UFF
