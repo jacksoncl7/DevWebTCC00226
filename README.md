@@ -15,4 +15,5 @@ Noções de Backend  - Django 2.x
 
 No diretório 'frist_work' há o passo introdutório as técnologias de frontend.
 
- 
+No diretório 'second_work' há o passo sequente ao introdutório nas tecnologias 
+frontend, enfaze em eventos e na utilização da lin jQuery. 

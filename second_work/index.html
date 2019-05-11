@@ -18,11 +18,11 @@
       </div>
       <form>
         <div class="form-group row">
-          <label for="Nome" class="col-sm-2 col-form-label text-right"><strong>Nome</strong></label>
+          <label for="Nome" class="col-sm-2 col-form-label text-center"><strong>Nome</strong></label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="nome-entrada" placeholder="Nome">
+            <input type="text" class="form-control" id="name-entry-id" placeholder="Nome">
             <div class="text-left mt-2">
-              <button type="button" id="btn-enviar-id" class="btn btn-primary" name="enviar">
+              <button type="button" id="btn-id" class="btn btn-primary" name="enviar">
                 <i class="fas fa-download"></i>
                 Enviar
               </button>
@@ -34,40 +34,28 @@
     <div class="row">
       <div class="col-sm-6">
         <h2>Lista 1</h2>
-        <table class="table table-hover">
+        <table id="table-one" class="table table-hover">
           <thead>
             <tr>
-              <th scope="col">Nome</th>
-              <th scope="col">operação</th>
+              <th class=" ml-auto" scope="col">Nome</th>
+              <th class=" mr-auto" scope="col">operação</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Roberto Arruda</td>
-              <td> <button type="button" class="btn btn-primary" name="button">Mover</button> </td>
-            </tr>
-            <tr>
-              <td>Carlos Nogueira</td>
-              <td> <button type="button" class="btn btn-primary" name="button">Mover</button> </td>
-            </tr>
           </tbody>
         </table>
       </div>
 
       <div class="col-sm-6">
         <h2>Lista 2</h2>
-        <table class="table table-hover">
-          <thead>
+        <table id="table-two" class="table table-hover">
+          <thead >
             <tr>
-              <th scope="col">Nome</th>
-              <th scope="col">operação</th>
+              <th class=" mr-auto" scope="col">Nome</th>
+              <th class=" mr-auto" scope="col">operação</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Destroy</td>
-              <td> <button type="button" class="btn btn-primary" name="button">Excluir</button> </td>
-            </tr>
           </tbody>
         </table>
       </div>
