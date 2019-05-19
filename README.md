@@ -13,7 +13,12 @@ Noções de Frontend - HTML CSS JS (ferramentas de apoio JQuery e Bootstrap)
 
 Noções de Backend  - Django 2.x
 
+Quanto aos diretórios:
+
 No diretório 'frist_work' há o passo introdutório as técnologias de frontend.
 
 No diretório 'second_work' há o passo sequente ao introdutório nas tecnologias 
-frontend, enfaze em eventos e na utilização da lin jQuery. 
+frontend, enfaze em eventos utilizando a library jQuery. 
+
+No diretório 'third_work' há o passo introdutório nas tecnologias backend nele também
+trabalhamos a aplicação das tecnologias frontend, já estudados.
