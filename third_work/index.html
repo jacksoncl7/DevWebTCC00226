@@ -12,11 +12,51 @@
 
 <body>
   <!-- cabecalho do site -->
-  <div class="header">
+  <header class="header main-color">
+    <nav class="navbar navbar-dark bg-info navbar-expand-md fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <strong>Livraria Jack</strong>
+        </a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Botão de navegação">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-  </div>
+        <div class="collapse navbar-collapse" id="menu">
+          <div id="list-nav-menu" class="navbar-nav mr-auto list-group">
+            <a class="nav-link nav-item list-group-item-action" href="#">
+              Alta
+            </a>
+            <a class="nav-link nav-item list-group-item-action" href="#">
+              Ofertas
+            </a>
+          </div>
+          <div class="input-group col-8 mr-auto">
+            <input type="text" class="form-control" id="search-bar" placeholder="Vamos ler hoje ?">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <a href="#">
+                  <i class="fas fa-search"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="navbar-nav">
+            <a class="nav-link nav-item" href="carrinho.html" alt="Editar o Carrinho">
+              <i class="fas fa-shopping-cart"></i>
+              Carrinho
+            </a>
+            <a class="nav-link nav-item" href="login.html" alt="Entrar em sua conta">
+              <i class="fas fa-store-alt"></i>
+              Entrar
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
   <!-- corpo da index -->
-  <main class="container">
+  <main class="container mt-5">
     <div class="row text-center">
 
       <div class="col-md-6 col-lg-4">
@@ -28,7 +68,7 @@
             <span class="danger">
               <p>R$ 17,90</p>
             </span>
-            <a href="#" class="btn btn-outline-info">
+            <a href="produto.html" class="btn btn-outline-info">
               <span style="padding:100px">
                 <i class="fas fa-shopping-cart"></i>
               </span>
@@ -58,11 +98,11 @@
       <div class="col-md-6 col-lg-4">
         <div class="card mt-4" style="width: 18rem;">
           <div class="card-body">
-            <img src="assets/images/trab3.jpeg" class="img-fluid pull-xs-left" alt="..." width="180px">
-            <h5 class="card-title">DR. SLUMP</h5>
-            <p class="card-text">Akira Toriyama</p>
+            <img src="assets/images/trab5.jpeg" class="img-fluid pull-xs-left" alt="..." width="180px">
+            <h5 class="card-title">HELLSING</h5>
+            <p class="card-text">Kohta Hirano</p>
             <span class="danger">
-              <p>R$ 17,90</p>
+              <p>R$ 15,90</p>
             </span>
             <a href="#" class="btn btn-outline-info">
               <span style="padding:100px">
@@ -94,14 +134,43 @@
   </main>
 
   <!-- rodapé -->
-  <div class="footer">
+  <footer class="footer mt-4 bg-info">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 sm-6">
+          <h5>Categorias</h5>
+          <ul class="list-unstyled">
+            <li><a href='#' >Shone 少年</a></li>
+            <li><a href='#' >Shoujo 少女</a></li>
+            <li><a href='#' >Josei 女性</a></li>
+            <li><a href='#' >Seinen 青年</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+          <h5>Nossas Redes</h5>
+          <ul class="list-unstyled">
+            <li><i class="fab fa-twitter"></i><a href='https://www.twitter.com' > Twitter</a></li>
+            <li><i class="fab fa-facebook"></i><a href='https://www.facebook.com' > Facebook</a></li>
+            <li><i class="fab fa-linkedin"></i><a href='https://www.linkedin.com' > Linkedin</a></li>
+          </ul>
+        </div>
 
-  </div>
+        <div class="col-lg-4 col-sm-6">
+          <h5>Contato</h5>
+          <ul class="list-unstyled">
+            <li>Livraria</li>
+            <li>+55 (21) 99999-9999</li>
+            <li><a  href='mailto:contato@livraria.br'>contato@livraria.br</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <script src="assets/js/jquery-3.3.1.js"></script>
   <script src="assets/js/popper.js"></script>
   <script src="assets/js/bootstrap.js"></script>
   <script src="assets/js/script.js"></script>
 </body>
-
 </html>

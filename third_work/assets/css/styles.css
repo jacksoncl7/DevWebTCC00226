@@ -1,172 +1,22 @@
-.bgimage {
-   background-image: url('../images/panoramica1.jpg');
-   background-position: center center;
-   background-size: cover;
-   height: 350px;
-   margin-top: 69px;
-}
-
-
- .jumbotron {
-   margin-top: 20px;
-   margin-bottom: 0px;
-}
-
-.carousel-item img {
-   width: 100%;
-   height: 350px;
-} */
-
-legend {
-   font-size: 1.1rem;
-}
-
-.modal-title {
-   font-size: 1.2rem;
-}
-
-.media img {
-   width: 180px;
-   margin-bottom: 15px;
-   border-radius: 6%;
-}
-
-.altura-da-linha {
-   line-height: 7px;
-}
-
-a[data-toggle="popover"] {
-   cursor: pointer;
-}
-
  body {
    position: relative;
-}
+ }
 
+ .main-color {
+   background-color: #40E0D0;
+ }
 
-/* visibility:hidden means that unlike display:none ,
-   the tag is not visible,
-   but space is allocated for it on the page.
-
-   visibility: uma imagem com visibility: hidden fará com que a
-   imagem não seja exibida, mas o espaço necessário para ela será
-   alocado.
-
-   O elemento que está em cima termina no ponto onde começa a margem
-   do elemento seguinte. Se a margem, em vez de 0px, for de -69px
-   então o elemento de cima (jumbotron) terminará na base do elemento
-   de baixo. Observe que o elemento de baixo (span) tem 69 pixels (o
-   mesmo número de pixels da barra de navegação).
-
-   Definindo margin-top: -69px; não altera o local onde o elemento
-   (span)  começa.  Simplesmente  define  onde o  elemento de cima
-   (jumbotron) termina. E ele passa a terminar na base do elemento
-   de baixo (span).
-
-   Não é preciso usar o visibility: hidden; pois não há nada dentro
-   do elemento span.
-*/
-
-.header4 {
-   display: block;
-   height: 69px;
-   margin-top: -69px;
-   visibility: hidden;
-}
-
-/* ---------------------------------------------------- */
-
-/*
-background-color: #333; -  preto
-color: #efefef; - branco
-padding: 30px 0; - top e bottom padding de 30px e
-                   right e left padding de 0px
-color: #639bcf; - Azul */
-
+ .pos-login {
+   display: flex;
+   align-items: center
+ }
 
  .footer {
-   background-color: #333;
+   background-color: #0267BA;
    color: #efefef;
    padding: 30px 0;
-}
+ }
 
-.footer a {
-   color: #639bcf;
-}
-
-.footer a:hover {
-   color: #d8e6f3;
-}
-
-/* ---------------------------------------------------- */
-
-@media (max-width: 767px) {
-   /* Nesse tamanho de tela a imagem não aparece e precisamos
-      de 70 pixels para tirar o jumbotron debaixo da barra de
-      navegação e de mais 20 pixels de afastamento do menu. */
-  /*    padding: 40px 32px; significa 40px para top e bottom e
-      32px para left e right*/
-
-   .jumbotron {
-      margin-top: 90px;
-      padding: 40px 32px;
-   }
-
-   .jumbotron h3 {
-      font-size: 23px;
-   }
-
-   .jumbotron h4 {
-      font-size: 20px;
-   }
-}
-
-@media (max-width: 480px) {
-  .jumbotron h3 {
-      font-size: 20px;
-   }
-
-   .jumbotron h4 {
-      font-size: 18px;
-   } */
-
-   /* ----------------------  */
-
-   .media img {
-      width: 90px;
-      margin-bottom: 6px;
-      border-radius: 50%;
-   }
-
-   .media-body h5 {
-      padding-top: 18px;
-      font-size: 15px;
-   }
-
-   .texto-media-body {
-      display: none;
-   }
-
-   /* ----------------------  */
-
-   blockquote p {
-      font-size: 15px;
-   }
-
-   h4 {
-      font-size: 18px;
-   }
-
-   h5 {
-      font-size: 16px;
-   }
-
-   .titulo-excursoes {
-      font-size: 15px;
-   }
-}
-
-.carousel-text h5 h6{
-  font-size: 60px;
-  margin-bottom: 100px;
-}
+ .footer a {
+   color: white;
+ }
