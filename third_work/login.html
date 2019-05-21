@@ -12,23 +12,87 @@
 
 <body class="bg-info">
   <div class="pos-login container">
-    <div class="card" style="padding:100px; margin-top:50px; margin-left:auto;margin-right:auto;">
-      <form>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" placeholder="Digite seu email">
-          <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+    <div class="card" style="padding:150px; margin-top:50px; margin-left:auto;margin-right:auto;">
+      <button type="button" class="btn btn-info" data-toggle="modal" data-target="#login">
+        Entrar
+      </button><br>
+      <span class="text-center">
+        Faça Login aqui!
+      </span>
+      <button type="button" class="btn btn-info mt-1" data-toggle="modal" data-target="#registro">
+        Registrar-se
+      </button>
+      <span class="">
+        Ainda não é cliente? Registre-se aqui!
+      </span>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Login</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-        <div class="form-group">
-          <label for="passsword">Senha</label>
-          <input type="password" class="form-control" placeholder="Digite sua Senha">
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="input-email">E-Mail</label>
+              <input type="email" class="form-control" id="input-email" placeholder="Digite o email cadastrado">
+            </div>
+            <div class="form-group">
+              <label for="input-password">Senha</label>
+              <input type="password" class="form-control" id="input-password" placeholder="Digite sua senha">
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-info">Entrar</button>
+            </div>
+          </form>
         </div>
-        <div class="form-group form-check">
-          <!-- <input type="checkbox" class="form-check-input" id="exampleCheck1"> -->
-          <!-- <label class="form-check-label" for="check">Primeira vez aqui?</label> -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="registro" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Resgistro</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-        <button type="submit" class="btn btn-outline-info">Login/Registro</button>
-      </form>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="input-email">E-Mail</label>
+              <input type="email" class="form-control" id="input-email" placeholder="Digite o email cadastrado">
+            </div>
+            <div class="form-group">
+              <label for="input-email">Confirmação do E-Mail</label>
+              <input type="email" class="form-control" id="input-confirmation-email" placeholder="Digite a confirmação do email cadastrado">
+            </div>
+            <small class="form-text text-muted">Favor confirmar o email</small>
+            <div class="form-group">
+              <label for="input-password">Senha</label>
+              <input type="password" class="form-control" id="input-password" placeholder="Digite sua senha">
+            </div>
+            <div class="form-group">
+              <label for="input-password">Confirmação da Senha</label>
+              <input type="password" class="form-control" id="input-confirmation-password" placeholder="Digite a confirmação da sua senha">
+            </div>
+            <small class="form-text text-muted">Favor confirmar a senha</small>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-info">Entrar</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
   <script src="assets/js/jquery-3.3.1.js"></script>
@@ -36,4 +100,5 @@
   <script src="assets/js/bootstrap.js"></script>
   <script src="assets/js/script.js"></script>
 </body>
+
 </html>
