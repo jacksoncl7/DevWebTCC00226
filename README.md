@@ -24,6 +24,7 @@ No diretório 'third_work' há o passo introdutório nas tecnologias backend nel
 trabalhamos a aplicação das tecnologias frontend, já estudados.
 
 -------------------------------CONFIGURACAO----------------------------------------------
+
 Os arquivos de assets que são compartilhados estão na pasta assets mais externa, para não
 gerar replicas desnecessárias, ficarão assim até que eu ache outra forma mais elegante 
 de solucionar o problema de réplicas desnecessárias.
