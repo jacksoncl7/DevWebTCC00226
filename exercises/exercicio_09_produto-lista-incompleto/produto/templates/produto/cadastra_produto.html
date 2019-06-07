@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block titulo %}
+    Cadastro de Produtos
+{% endblock %}
+
+{% block conteudo %}
+    <div class="row">
+        <div class="col-12">
+            <h4 class="mb-2">Cadastro de Produtos</h4>
+            <hr class="mb-4">
+        </div>
+    </div>
+
+    {% if messages %}
+        <div class="row mb-3">
+            <div class="col-12">
+                {% for message in messages %}
+                    <ul class="list-group rounded {{ message.tags }}">
+                        {# Supondo a utilização de apenas info e danger #}
+                        <li style="padding-top: 7px; padding-bottom: 7px;"
+                            class="list-group-item list-group-item-{% if message.tags == 'info' %}info{% else %}danger{% endif %}">
+                            {{ message }}
+                        </li>
+                    </ul>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+
+    <form id="form" action ="{% url 'produto:cadastra_produto' %}" method ="POST" novalidate>
+
+        <div class="form-group row" style="margin-bottom: 10px;">
+            <label for="id_categoria" class="col-lg-2 col-form-label font-weight-bold">Categoria</label>
+            <div class="col-lg-10">
+                {{ form.categoria }}
+                {% if form.categoria.errors %}
+                    <div class="alert alert-danger mb-0"
+                         style="padding-top: 2px; padding-bottom: 2px;">
+                        {% for error in form.categoria.errors %}
+                            <small>{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        {#  <select name="categoria" class="form-control form-control-sm" required id="id_categoria">   #}
+        {#     <option value="" selected>--- Selecione uma categoria ---</option>                     #}
+        {#     <option value="1">Eletrodoméstico</option>                                           #}
+        {#     <option value="2">Celular</option>                                                   #}
+        {#     <option value="3">Computador</option>                                                #}
+        {#  </select>                                                                               #}
+
+        <div class="form-group row" style="margin-bottom: 10px;">
+            <label for="id_nome" class="col-lg-2 col-form-label font-weight-bold">Nome</label>
+            <div class="col-lg-10">
+                {{ form.nome }}
+                {% if form.nome.errors %}
+                    <div class="alert alert-danger mb-0" style="padding-top: 2px; padding-bottom: 2px;">
+                        {% for error in form.nome.errors %}
+                            <small>{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        {#  <input type="text"                               #}
+        {#     name="nome"                                  #}
+        {#     id="id_nome"                                 #}
+        {#     class="form-control form-control-sm"          #}
+        {#     maxlength="10"                                #}
+        {#     required>                                     #}
+
+        <div class="form-group row" style="margin-bottom: 10px;">
+            <label for="id_preco" class="col-lg-2 col-form-label font-weight-bold">Preço</label>
+            <div class="col-lg-10">
+                {{ form.preco }}
+                {% if form.preco.errors %}
+                    <div class="alert alert-danger mb-0" style="padding-top: 2px; padding-bottom: 2px;">
+                        {% for error in form.preco.errors %}
+                            <small>{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        {#  <input type="text"                               #}
+        {#     name="preco"                                #}
+        {#     id="id_preco"                               #}
+        {#     class="form-control form-control-sm"          #}
+        {#     maxlength="10"                                #}
+        {#     required>                                     #}
+
+        <div class="form-group row" style="margin-bottom: 20px;">
+            <label for="id_data_cadastro" class="col-lg-2 col-form-label font-weight-bold">Data de Cadastro</label>
+            <div class="col-lg-3">
+                {{ form.data_cadastro }}
+                {% if form.data_cadastro.errors %}
+                    <div class="alert alert-danger mb-0" style="padding-top: 2px; padding-bottom: 2px;">
+                        {% for error in form.data_cadastro.errors %}
+                            <small>{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-lg-7"></div>
+        </div>
+
+        {# <input type="text"                                          #}
+        {#        name="data_cadastro"                                       #}
+        {#        class="form-control form-control-sm hasDatepicker"   #}
+        {#        required=""                                          #}
+        {#        id="id_data_cadastro"                                      #}
+        {#        maxlength="10">                                      #}
+
+        <div class="form-group row" style="margin-top: 20px;">
+            <div class="col-lg-10 offset-lg-2">
+                {% csrf_token %}
+                <button id="botao" type="button" class="btn btn-primary"><img src="{% static 'produto/images/skin/database_add.png' %}">
+                    {% if form.produto_id.value %}
+                       Alterar
+                    {% else %}
+                       Cadastrar
+                    {% endif %}
+                </button>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}
+
+{% block domready %}
+
+    $("#id_data_cadastro").datepicker({
+    {#    minDate: new Date(1950, 0, 1),#}
+    {#    maxDate: new Date({{ ano_atual }}, {{ mes_atual }} - 1, {{ dia_atual }}),#}
+        dateFormat: 'dd/mm/yy',
+        dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
+        dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
+        dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
+        monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+        monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
+        nextText: 'Próximo',
+        prevText: 'Anterior',
+        showOn: "focus",
+    });
+
+    $("#id_data_cadastro").mask("00/00/0000");
+
+    $("#botao").click(function() {
+        $("#form").append('{{ form.produto_id }}')
+        $("#form").submit()
+    })
+{% endblock %}

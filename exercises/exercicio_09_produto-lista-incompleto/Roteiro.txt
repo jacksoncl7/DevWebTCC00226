@@ -1,0 +1,15 @@
+﻿Roteiro
+-------
+
+Acrescentando um campo de data no cadastro de produtos.
+
+1. Criar no form o campo data_cadastro
+
+2. Acrescentar o formato de data a ser utilizado na entrada de dados
+
+3. Acrescentar o campo cada_cadastro no model
+
+4. Acrescentar o campo cada_cadastro em cadastra_produto.html
+
+5. Acrescentar o campo cada_cadastro em exibe_produto.html
+ 

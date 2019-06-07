@@ -1,0 +1,148 @@
+﻿**************************************************************************************************************
+**********                            I N T R O D U Ç Ã O  (Continuação)                            **********
+**************************************************************************************************************
+
+1. Agora vamos criar uma segunda página HTML que possa ser acessada a partir da página index.html.
+
+Crie a página denominada pagina1.html com o seguinte conteúdo:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {{ frase }}
+    <br>
+    <a href="{% url "produto:index" %}">Voltar</a>
+</body>
+</html>
+
+
+2. Atualizando o arquivo produto/urls.py:
+
+from django.urls import path
+from . import views
+
+app_name = 'produto'
+
+urlpatterns = [
+    path('', views.index, name='index'),
+    path('pagina1/', views.pagina1, name='pagina1'),
+]
+
+
+3. Criando a view pagina1
+
+def pagina1(request):
+    frase = "Você está na página 1";
+    return render(request, 'produto/pagina1.html', {'frase': frase})
+
+
+4. Atualizando a página index.html que deve receber um link para a página1.html
+
+   Agora clique <a href="{% url 'produto:pagina1' %}">aqui</a> para acessar a página 1.<br>
+
+
+*************************************************************************************************************
+**********    C U S T O M I Z A N D O   O   L O O K   A N D   F E E L   D A   A P L I C A Ç Ã O    **********
+*************************************************************************************************************
+
+Agora iremos adicionar à nossa aplicação produto uma folha de estilo e uma imagem.
+
+Além do HTML gerado pelo servidor, aplicações web geralmente necessitam fornecer arquivos adicionais —  tais
+como imagens,  JavaScript, ou CSS —  necessários para  renderizar uma  página da web  completa.  No  Django,
+fazemos referência a estes arquivos como “static files”.
+
+Para pequenos projetos, isto não é um  grande problema, pois  podemos manter os  arquivos estáticos  em algum
+lugar  que sua  aplicação  web  possa  encontrar.  No entanto,  em projetos  maiores – especialmente  aqueles
+compostos por várias  aplicações - que utilizam vários  conjuntos de arquivos  estáticos fornecidos  por cada
+aplicação, esta tarefa começa a ficar complicada.
+
+Esta é a função da aplicação django.contrib.staticfiles: ela coleta  os arquivos estáticos  de cada uma   das
+suas aplicações  (e de  quaisquer outros locais  que você especificar)  e os armazena  em um único local para
+que possam ser facilmente encontrados e fornecidos em um ambiente de produção.
+
+***********************************************************************************
+** Em primeiro lugar, crie um diretório denominado static no diretório produto.
+***********************************************************************************
+
+Django  irá  procurar  por arquivos  estáticos lá,  da mesma  forma como  o Django  encontra os  templates em
+produto/templates/.
+
+A configuração de STATICFILES_FINDERS do Django contém uma lista de finders que sabem como encontrar arquivos
+estáticos de várias fontes. Um dos defaults é AppDirectoriesFinder que procura por um subdiretório denominado
+“static” em  cada uma das  INSTALLED_APPS, assim como o diretório static em produto que  acabamos de criar.  O
+site admin utiliza a mesma estrutura de diretório para seus arquivos estáticos.
+
+***********************************************************************************
+** E agora, dentro do  diretório static que você  acabou de criar, crie outro  diretório denominado  produto e
+** dentro dele crie o diretório css que deve conter o arquivo denominado styles.css.
+***********************************************************************************
+
+Em outras palavras, sua folha de estilo deveria estar em produto/static/produto/css/styles.css.
+
+Em função da forma como a  classe AppDirectoriesFinder  funciona (que  é responsável  por encontrar  arquivos
+estáticos), você pode  referenciar este  arquivo estático no  Django simplesmente como produto/css/styles.css,
+da mesma forma que referenciamos o caminho para templates.
+
+
+Atribuindo um Namespace para Arquivos Estáticos
+-----------------------------------------------
+
+Assim  como  aconteceu  com  os  templates,  nós  podemos  colocar  nossos  arquivos  estáticos   diretamente
+em produto/static (em  vez  de criar um  outro subdiretório  denominado produto),  mas isso  seria  na  verdade
+uma má idéia. Django irá escolher o primeiro arquivo estático que ele encontrar cujo nome combinar, e se você
+tiver um arquivo estático com o mesmo nome em uma aplicação diferente, Django não seria  capaz de  dintinguir
+entre eles. Precisamos ser capazes de dizer ao Django qual é o correto, e a forma mais fácil de garantir  que
+isso irá funcionar é  atribuindo a eles um  namespace. Isto é,  colocando estes  arquivos dentro  de um outro
+diretório com o nome da aplicação.
+
+Ponha o seguinte código naquela folha de estilo (produto/static/produto/css/styles.css):
+
+body {
+    background-color: burlywood;
+}
+
+E em seguida, adicione a seguinte linha de código no topo das páginas index.html e pagina1.html:
+
+{% load static %}
+
+E agora adicione a linha abaixo na seção head das páginas index.html e pagina1.html:
+
+<link rel="stylesheet" type="text/css" href="{% static 'produto/css/styles.css' %}" />
+
+
+O tag template {% static %} gera o URL absoluto dos arquivos estáticos.
+
+Isto é  tudo  o que  você  precisa fazer.  Recarregue  http://localhost:8000/produto/ e você  deve ver  que as
+duas  páginas  agora  possuem  uma  cor  de  fundo  o  que  significa que a sua folha de estilo foi carregada
+corretamente.
+
+
+Adicionando uma imagem de fundo (background-image)
+--------------------------------------------------
+
+***********************************************************************************
+** Agora, dentro do diretório produto/static/produto, crie um outro diretório denominado images, e dentro  deste
+** diretório ponha um arquivo denominado celular.jpg.
+***********************************************************************************
+
+Em outras palavras, ponha sua imagem em produto/static/produto/images/celular.jpg.
+
+Agora acrescente a linha abaixo em ambas as páginas HTML:
+
+<img src="{% static 'produto/images/celular.jpg' %}" alt="Celular">
+
+
+Recarregue http://localhost:8000/produto/ e você deverá ver a imagem carregada.
+
+Aviso
+
+Naturalmente  o  tag  template  {% static %}  não  está  disponível  para  uso  por arquivos  estáticos  como
+suas folhas de estilo que não foram geradas pelo Django. Você deveria sempre utilizar caminhos relativos para
+ligar arquivos estáticos uns aos outros, pois fazendo isso você poderá mudar o STATIC_URL (usado pelo tag  de
+template static para gerar seus URLs) sem ter de modificar um monte de caminhos em seus arquivos estáticos.
+
+

@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% load filtros %}
+
+{% block titulo %}
+    Cadastro de Produtos
+{% endblock %}
+
+{% block conteudo %}
+    <div style="margin-bottom: 15px;">
+        <h4 style="margin-bottom: 10px;">Cadastro de Produtos</h4>
+        <hr style="margin-bottom: 0px;">
+    </div>
+
+    {% if messages %}
+        <div class="row mb-3">
+            <div class="col-12">
+                {% for message in messages %}
+                    <ul class="list-group rounded {{ message.tags }}">
+                        {# Supondo a utilização de apenas info e danger #}
+                        <li style="padding-top: 7px; padding-bottom: 7px;"
+                            class="list-group-item list-group-item-{% if message.tags == 'info' %}info{% else %}danger{% endif %}">
+                            {{ message }}
+                        </li>
+                    </ul>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="row mb-3">
+        <div class="col-lg-2">
+            <span class="texto"><b>Categoria: </b></span>
+        </div>
+        <div class="col-lg-10">
+            <span class="texto">{{ produto.categoria.nome }}</span>
+        </div>
+
+        <div class="col-lg-2">
+            <span class="texto"><b>Nome: </b></span>
+        </div>
+        <div class="col-lg-10">
+            <span class="texto">{{ produto.nome }}</span>
+        </div>
+
+        <div class="col-lg-2">
+            <span class="texto"><b>Preço: </b></span>
+        </div>
+        <div class="col-lg-10">
+            <span class="texto">{{ produto.preco | separador_de_milhar }}</span>
+        </div>
+
+        <div class="col-lg-2">
+            <span class="texto"><b>Data de cadastro: </b></span>
+        </div>
+        <div class="col-lg-10">
+            <span class="texto">{{ produto.data_cadastro | date:'d/m/Y' }}</span>
+        </div>
+    </div>
+
+    {% if form_remove_produto %}
+        <div class="form-group row" style="margin-bottom: 0px;">
+            <div class="col-12">
+                <div class="form-inline">
+                    <a id="botao_editar" href="{% url 'produto:edita_produto' produto.id %}"
+                       class="btn btn-primary mr-3">
+                        <img src="{% static 'produto/images/skin/database_edit.png' %}"/>
+                        Editar
+                    </a>
+
+                    <form id="form_remove_produto" style="margin-bottom: 0px;"
+                          action ="{% url 'produto:remove_produto' %}" method ="post" novalidate>
+                        {% csrf_token %}
+
+                        <button id="botao_remover" type="button" class="btn btn-danger">
+                            <img src="{% static 'produto/images/skin/database_delete.png' %}"/> Remover
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}
+
+{% block domready %}
+    $("#botao_remover").click(function() {
+        $("#form_remove_produto").append('{{ form_remove_produto.produto_id }}')
+        $("#form_remove_produto").submit()
+    })
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

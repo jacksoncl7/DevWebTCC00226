@@ -1,0 +1,142 @@
+﻿**************************************************************************************************************
+**********                   I N T R O D U Ç Ã O   A O   D J A N G O   A D M I N                    **********
+**************************************************************************************************************
+
+***************************************************************************
+** Criando o usuário admin: python manage.py createsuperuser
+** Trocando sua senha: python manage.py changepassword admin
+***************************************************************************
+
+O site Django admin é ativado por default. Vamos iniciar o servidor de desenvolvimento e explorá-lo.
+
+***************************************************************************
+** python manage.py runserver
+** http://127.0.0.1:8000/admin
+***************************************************************************
+
+Você deverá ver alguns tipos de conteúdo editável: groups e users.   Eles são fornecidos  pelo django.contrib.
+auth, o framework de autenticação fornecido pelo Django.
+
+Mas porque as tabelas de Categoria e Produto da aplicação produto não podem ser modificadas usando a interface
+admin?
+
+Há algo a fazer: precisamos configurar a aplicação admin indicando que Classes/Tabelas podem ser acessadas
+usando a interface admin. Para fazer  isso, abra o arquivo produto/admin.py, e edite-o assim:
+
+from django.contrib import admin
+from .models import Categoria, Produto
+
+class CategoriaAdmin(admin.ModelAdmin):
+    list_display = ['nome', 'slug']
+    search_fields = ['nome', 'slug']
+
+class ProdutoAdmin(admin.ModelAdmin):
+    list_display = ['nome', 'slug', 'categoria']
+    search_fields = ('nome', 'categoria')
+
+admin.site.register(Categoria, CategoriaAdmin)  # Registre a classe Categoria com os produtos
+                                                # definidos em CategoriaAdmin
+admin.site.register(Produto, ProdutoAdmin)
+
+Agora podemos cadastrar mais alguns produtos.
+
+Coisas a observar aqui:
+
+Os forms são automaticamente gerados a partir do model das classes Categoria e Produto.
+Os diferentes tipos de campos do modelo (DateTimeField, CharField) correspondem a componentes HTML específicos
+de entrada de dados.
+
+Cada tipo de campo sabe como se exibir na aplicação de administração do Django.
+Cada DateTimeField possui atalhos JavaScript. Datas possuem um atalho denominado “Today” e um calendar popup,
+e campos do tipo time possuem um atalho denominado “Now” e um popup que lista as horas mais comumente acessadas.
+
+A parte de baixo da página nos dá algumas opções:
+
+Save – Salva modificações e retorna para a página change-list para este tipo de objeto.
+Save and continue editing – Salva modificações e recarrega a página para este objeto.
+Save and add another – Salva as modificações e carrega uma nova página em branco para este tipo de object.
+Delete – Exibe uma página de confirmação de deleção.
+
+Se o valor  da “data_cadastramento”  não casar com  a data e hora de  cadastramento informada  quando o Produto
+foi cadastrado, provavelmente  você esqueceu de  designar o valor  correto para TIME_ZONE.  Modifique-o,
+recarregue a página e verifique se o valor correto é exibido. Ou designe USE_TZ para False.
+
+Modifique a “data_cadastramento” clicando nos atalhos “Today” e “Now”. Então clique em “Save and continue editing.”
+Então clique em “History” no lado superior direito. Você verá uma página que lista todas as modificações feitas
+neste objeto através da Django admin, com o timestamp e username da pessoa que fez a modificação.
+
+Para alterar o nome no plural de uma classe, edite a classe em models.py:
+
+class Categoria(models.Model):
+    class Meta:
+        verbose_name_plural = "Categorias"    # Para gerar um nome no plural pode não ser suficiente
+                                              # acrescentar um 's' no final do nome. Isso é o default.
+
+Para definir quais campos  devem ser exibidos ao  listar Categorias e Produtos e para  definir campos  de busca,
+edite o arquivo admin.py assim:
+
+class CategoriaAdmin(admin.ModelAdmin):
+    list_display = ['nome', 'slug']
+    search_fields = ['nome', 'slug']
+
+class ProdutoAdmin(admin.ModelAdmin):
+    list_display = ['nome', 'slug', 'categoria']
+    search_fields = ('nome', 'categoria')
+
+admin.site.register(Categoria, CategoriaAdmin)  # Registre a classe Categoria com os produtos
+                                                # definidos em CategoriaAdmin
+admin.site.register(Produto, ProdutoAdmin)
+
+E agora vamos definir um list_filter na classe ProdutoAdmim, conforme vem abaixo.  Para campos do  tipo date,
+Django prove atalhos para filtrar a lista para “Hoje,” “Últimos 7 dias,” “Este mês” e “Este ano”.
+
+class ProdutoAdmin(admin.ModelAdmin):
+    ...
+    list_filter = ('slug',)
+
+E agora vamos definir um list_filter na classe ProdutoAdmim para o campo categoria que é uma chave estrangeira.
+
+class ProdutoAdmin(admin.ModelAdmin):
+    ...
+    list_filter = ('categoria',)
+
+E para  acrescentar uma barra de  navegação no topo da  lista podemos  acescentar uma  date_hierarchy à classe
+ProdutoAdmim, assim:
+
+class ProdutoAdmin(admin.ModelAdmin):
+    ...
+    date_hierarchy = 'data_cadastramento'            <== Observe que esta data não existe no modelo.
+
+E para que os campos sejam exibidos em uma determinada ordem default.
+
+class ProdutoAdmin(admin.ModelAdmin):
+    ...
+    ordering = ('nome',)
+
+E para  definir quais  campos e em que  ordem eles  devem aparecer no  formulário de entrada  de dados  de uma
+classe:
+
+class ProdutoAdmin(admin.ModelAdmin):
+    ...
+    fields = ('categoria', 'nome', 'slug')    <== removendo o campo disponivel
+
+Resultado final:
+================
+
+from django.contrib import admin
+from .models import Categoria, Produto
+
+class CategoriaAdmin(admin.ModelAdmin):
+    list_display = ['nome', 'slug']
+    search_fields = ['nome', 'slug']
+    prepopulated_fields = {'slug': ('nome',)}
+admin.site.register(Categoria, CategoriaAdmin)
+
+class ProdutoAdmin(admin.ModelAdmin):
+    fields = ('categoria', 'nome', 'slug')
+    list_display = ['nome', 'slug', 'categoria']
+    search_fields = ('nome', 'categoria', 'disponivel')
+    list_filter = ['categoria']
+    list_editable = ['slug', 'categoria']
+    prepopulated_fields = {'slug': ('nome',)}
+admin.site.register(Produto, ProdutoAdmin)

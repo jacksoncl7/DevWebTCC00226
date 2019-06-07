@@ -1,0 +1,311 @@
+﻿**************************************************************************************************************
+**********                                 I N T R O D U Ç Ã O                                      **********
+**************************************************************************************************************
+
+1. Que versão de Python devo utilizar com DJango
+
+https://docs.djangoproject.com/en/2.0/faq/install/#faq-python-version-support
+
+Django version	   Python versions
+1.8	               2.7, 3.2 (until the end of 2016), 3.3, 3.4, 3.5
+1.9, 1.10	       2.7, 3.4, 3.5
+1.11	           2.7, 3.4, 3.5, 3.6
+2.0	               3.4, 3.5, 3.6
+2.1	               3.5, 3.6, 3.7
+
+
+2. Para instalar Python
+
+- https://www.python.org/downloads/
+- Instalar a versão 3.6.2
+- É possível também instalar a versão 2.7.14 (não recomendada, no nosso caso)
+- Não esquecer de marcar para atualizar a variável de ambiente path
+
+
+3. Para criar um ambiente virtual para este projeto
+
+3.1 File / Settings...
+3.2 Clique na engrenagem no canto superior direito
+3.3 Clique em Create VitualEnv
+- Em Name: digite _virtual_env (Esta será a pasta onde serão armazenados os arquivos do ambiente virtual)
+- Em Location indique uma pasta onde você pretende armazenar seus projetos django.
+- Em Base interpreter deve estar selecionado o python 3.6.2 ou superior.
+- Selecione apenas a segunda caixa de verificação abaixo:
+  - Inherit global site-packages     <== NÃO MARQUE
+  - Make available do all projects
+3.4 Clique em OK
+
+Obs: A pasta denominada _virtual_env será criada dentro da pasta onde vc pretende armazenar seus projetos django.
+     Como _virtual_env começa com _ (underscore), ela será a primeira pasta deste diretório onde vc irá colocar seus
+     projetos django.
+
+
+4. Para instalar o DJango, caso não esteja instalado, abrir o Terminal no PyCharm e digitar:
+
+- pip install Django==2.1.1         -U para atualizar versão anterior
+
+
+5.1 Para verificar a versão de Django instalada
+- Abrir o terminal
+- digitar: django-admin --version
+
+Alternativamente, é possível também fazer o seguinte:
+- Abrir a console (não é o terminal)
+- digitar: import django
+           django.VERSION
+
+
+5.2 Para verificar a versão de Python instalada
+- Abra a Python Console
+- import sys
+- print (sys.version)
+
+
+6. Criar o projeto django denominado projeto
+
+******************************************************************************************
+** Para cria o primeiro projeto usando o pyCharm
+** File / New Project... / Django / e informa o nome do projeto (projeto, por exemplo)
+******************************************************************************************
+
+Vamos criar uma aplicação denominada produto que contém 2 partes:
+
+- Um site público que permite que as pessoas vejam os produtos da aplicação.
+- Um site administrativo que nos permite adicionar, mudar e deletar produtos.
+
+O arquivo manage.py serve para executarmos comandos associados ao nosso projeto.
+
+Executando no terminal python manage.py veremos a lista de comandos que podemos executar.
+Por exemplo, podemos utilizar o comando runserver para por um servidor web no ar, assim:
+
+***************************************************************************
+** python manage.py runserver
+** E agora podemos enviar uma requisição http para http://localhost:8000
+***************************************************************************
+
+Conteúdo dos arquivos do projeto
+================================
+
+1. projeto - O diretório raiz denominado projeto é apenas um  container para o  projeto. Seu nome não é
+   relevante para o Django, isto é, pode ser renomeado sem problemas.
+
+2. Vamos utilizar o arquivo manage.py para executar comandos e interagir com projetos django.
+
+3. Já o diretório projeto mais interno é o package Python para este  projeto, e será preciso  utili-
+   zá-lo para importar qualquer coisa dentro dele (por exemplo, projeto.urls).
+
+4. projeto/__init__.py ==> Um arquivo vazio que diz ao Python que esta pasta deve ser considerada um
+   package Python.
+
+5. projeto/settings.py: O arquivo settings.py é utilizado para configurarmos o projeto.
+
+6. projeto/urls.py: é responsável por executar o roteamento de requisições com base no URL,  isto é,
+   qual código será executado com base no URL.
+
+7. projeto/wsgi.py: é utilizado pelo servidor web para executar o projeto
+
+Os arquivos __init__.py, manage.py e wsgi.py são deixados de lado após serem gerados.
+
+Já os arquivos settings.py e urls.py  precisam ser  editados para configurar cada projeto e para
+adicionar novo roteamento quando novas características são adicionadas.
+
+Qual a diferença entre um projeto e uma aplicação - app? Uma app é uma aplicação Web que faz alguma coisa,
+como um  systema de log na web, ou  um sistema de  banco de dados  para  registrar  dados, ou uma  simples
+aplicação de produto. Já um  projeto é uma coleção de  configurações e de  aplicações para um site da web
+específico. Um projeto pode conter várias aplicações. E uma aplicação pode constar de mais de um projeto.
+
+Para criar uma nova Django app, vamos abrir a terminal window e executar o comando:
+
+***************************************************************************
+** python manage.py startapp produto
+***************************************************************************
+
+- startapp - nome do subcomando existente em manage.py
+- produto - é o nome da aplicação que será criada dentro do projeto.
+
+Dentro do projeto será criada uma pasta denominada nome-da-aplicação com os seguintes arquivos:
+   _init_.py
+   admin.py,
+   models.py,
+   views.py,
+   tests.py,
+   e a pasta migrations.
+
+Uma aplicação tipicamente possui várias partes opcionais. Estas partes são
+- models.py,
+- admin.py,
+- views.py,
+- arquivos test.py,
+- e a pasta de migração.
+
+Cada uma destas partes preenche um papel específico dentro da aplicação.
+
+O arquivo models define a camada de dados da aplicação, tal como a estrutura das tabelas do banco de dados.
+
+O arquivo admin define a interface administrativa para ver e atualizar dados da aplicação.
+
+O arquivo  views define a  lógica de programação para esta app (produto) e cada método definino em views.py
+recebe uma requisição http e retorna uma resposta http.
+
+Os arquivos tests definem testes automatizados no código da aplicação.
+
+E por último, a pasta de migração  contém arquivos que automatizam  como as tabelas do banco de  dados são
+criadas  ou  atualizadas ao  longo do  tempo para  esta aplicação.  Estes  arquivos  são,  com frequência,
+auto-gerados mas podem ser criados manualmente.
+
+
+Atualize a Entrada INSTALLED_APPS Existente em loja/settings.py
+---------------------------------------------------------------
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'produto',                                       #  <==========
+]
+
+
+Escrevendo nossa primeira view:
+------------------------------
+
+No arquivo views.py vamos escrever o seguinte código:
+
+from django.http import HttpResponse
+
+def index(request):
+    return HttpResponse("Olá Mundo! Você está vendo o conteúdo da view index da aplicação 'produto'")
+
+Para chamar esta view é preciso mapeá-la a um URL - e para fazer isso, precisamos de uma URLconf.
+
+Para criar uma URLconf no diretório produto, vamos criar um arquivo denominado urls.py e vamos acres-
+centar a ele o seguinte conteúdo:
+
+from django.urls import path
+from . import views
+
+app_name = 'produto'
+
+urlpatterns = [
+    path('', views.index, name='index'),
+]
+
+O próximo  passo é incluir  no URLconf raiz, uma referência  para o  URLconf definido em produto/urls. Em
+projeto/urls.py, adicione um comando import para django.conf.urls.include e para django.conf.urls.url, e insira
+um include() na lista de urlpatterns, assim:
+
+from django.urls import path
+from django.conf.urls import include
+from django.contrib import admin
+
+urlpatterns = [
+    path('produto/', include('produto.urls')),
+    path('admin/', admin.site.urls),
+]
+
+A função include() nos  permite referenciar  outros  URLconfs. Note que  a expressão regular  para a função
+include()  não  possui um $ (caracter de final de string) mas  uma barra  inclinada.  Sempre que  o  Django
+encontra um  include(), ele  exclui qualquer  parte do URL correspondente  a esse ponto e envia a seqüência
+restante para o URLconf incluído para processamento posterior.
+
+A idéia por trás  do include () é tornar  mais fácil o plug-and-play de  URLs. Como a aplicação 'produto'
+possui  seus  próprios  URLconfs  (produto/urls.py),  elas  podem  ser  colocados  em  "/produto/", ou sob
+"/produtos_divertidos/" ou  em "/conteudo/produto/" ou  qualquer  outra raiz de  caminho, e o aplicativo
+ainda funcionará.
+
+***************************************************************************
+** python manage.py runserver
+***************************************************************************
+
+Agora digite:
+
+***************************************************************************
+** http://localhost:8000/produto/
+***************************************************************************
+
+no   seu   browser  e   você  deverá  ver  "Olá Mundo! Você está vendo o conteúdo da view index da aplicação
+'produto'".
+
+Agora vamos  mudar nossa  aplicação para  que a  frase "Olá Mundo!" seja exibida  por uma página denominada
+index.html e não pela própria view denominada index.
+
+Abaixo da pasta produto crie as pastas templates\produto e dentro desta segunda pasta produto crie o arquivo
+index.html para que ele exiba a frase "Olá Mundo!".
+
+Esse deve ser o conteúdo do arquivo index.html:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {{ frase }}!
+</body>
+</html>
+
+
+Agora, para que esta página html possa ser exibida é preciso que a view index mande exibi-la. Edite a view
+index, com esse novo conteúdo:
+
+# from django.http import HttpResponse
+from django.shortcuts import render
+
+def index(request):
+    # return HttpResponse("Olá Mundo! Você está vendo o conteúdo da view index da aplicação 'produto'")
+    frase = "Olá mundo";
+    return render(request, 'produto/index.html', {'frase': frase})
+
+Para por o servidor no ar, abra o terminal e execute o comando:
+
+***************************************************************************
+**
+python manage.py runserver
+**
+***************************************************************************
+
+O Arquivo urls.py
+=================
+
+A função path() recebe 4 argumentos, sendo dois obrigatórios (route e view), e dois opcionais (kwargs e name).
+Neste ponto é conveniente ver para que servem estes argumentos:
+
+O argumento route
+-----------------
+
+route é um string que contém um padrão de URL. Quando uma requisição está sendo processada, Django começa com o
+primeiro padrão em urlpatterns e percorre toda a lista, comparando o URL requisitado com cada padrão até que ele
+encontra um que combina.
+
+Padrões não levam em consideração a existência ou não de parâmetros do tipo GET e POST, ou o nome do domínio.
+
+Por exemplo, em uma  requisição para https://www.example.com/minhaapp/, o URLconf irá procular por  minhaapp/. Em uma
+requisição para https://www.example.com/minhaapp/?page=3, o URLconf irá procurar por minhaapp/.
+
+E finalmente, uma nota em relação ao desempenho: estas expressões regulares são compiladas na primeira vez que
+o módulo é carregado. Elas são muito rápidas (contanto que as buscas por urls não sejam muito complexas).
+
+O argumento view
+----------------
+
+Quando o Django encontra um casamento de expressão regular, Django chama a função definida para a view, com um
+objeto  HttpRequest como o  primeiro argumento e quaisquer  valores  “capturados”  pela  expressão regular como
+outros argumentos. Se a regex utilizar captura simples, os valores são passados como argumentos posicionais;
+se ela utiliza capturas nomeadas, os valores são passados como argumentos de palavra-chave.
+
+O argumento kwargs
+------------------
+
+Um argumento de  palavra-chave arbitrário  pode ser passado  em um dictionary para a view.
+
+O argumento name
+----------------
+
+A atribuir um nome a um URL se torna possível fazer referência a ele por esse nome, o que evita  ambiguidades,
+especialmente referências realizadas por templates.  Esta característica  poderosa nos permite fazer  mudanças
+globais nos URL patterns do seu projeto necessitando alterar apenas um arquivo.
+
+

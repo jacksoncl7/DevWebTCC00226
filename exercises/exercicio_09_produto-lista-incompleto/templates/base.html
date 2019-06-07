@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'produto/css/bootstrap.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'produto/css/jquery-ui.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'produto/css/base.css' %}" />
+    <title>{% block titulo %}Loja Virtual{% endblock %}</title>
+    <style>
+        {% block estilo %}{% endblock %}
+    </style>
+</head>
+<body class="barra">
+    <div class="container mt-3 mb-3">
+        <h3><a href="/">Loja Virtual</a></h3>
+    </div>
+
+    <div class="card bg-light" style="height: 60px; border: 1px solid #c6c8ca;">
+
+    </div>
+
+    <br>
+
+    <div class="container">
+        {% block conteudo %}
+
+        {% endblock %}
+    </div>
+
+    <script src="{% static 'produto/js/jquery-3.3.1.js' %}"></script>
+
+    <script src="{% static 'produto/js/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'produto/js/jquery.mask.js' %}"></script>
+
+    <script src="{% static 'produto/js/popper.js' %}"></script>
+    <script src="{% static 'produto/js/bootstrap.js' %}"></script>
+    <script src="{% static 'produto/js/script.js' %}"></script>
+    <script>
+        $(document).ready(function(){
+            {% block domready %}
+
+            {% endblock %}
+        });
+    </script>
+</body>
+</html>

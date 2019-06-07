@@ -1,0 +1,104 @@
+﻿*************************************************************************************************************
+**********                         E S T E N D E N D O   T E M P L A T E S                         **********
+*************************************************************************************************************
+
+Uma outra coisa boa que o Django tem para você é a estensão de templates, isto é, você pode utilizar a  mesma
+parte do seu HTML para diferentes páginas do seu site.
+
+Criando um template base
+------------------------
+
+Um template base é o template mais básico que você usa (estende) para criar todas as páginas do seu site.
+
+Vamos criar o arquivo base.html em produto/templates/:
+
+exercicio_03
+    produto
+        templates
+            produto
+                index.html
+                pagina1.html
+    templates
+        base.html
+
+Conteúdo do arquivo templates/base.html
+---------------------------------------
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block titulo %}Título default{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'produto/css/styles.css' %}" />
+</head>
+<body>
+    {% block conteudo %}
+    {% endblock %}
+
+    {% block rodape %}
+        <hr>
+        <p>Obrigado por visitar este site.</p>
+    {% endblock %}
+</body>
+</html>
+
+
+Observe que o conteúdo do tag <body>. Dentro dele criamos um bloco com o tag template {% block %} para  criar
+uma área que terá código HTML inserido nela. Este HTML  virá de outro  template  que  estende  este  template
+(base.html). Nós veremos como fazer isso em um momento.
+
+Agora  salve  base.html  e  abra  o  arquivo  produto/templates/produto/index.html  novamente.  Agora  você irá
+manter apenas o código abaixo:
+
+    {{ frase }}
+    <br>
+    <a href="{% url "produto:pagina1" %}">Página 1</a>
+    <br>
+    <br>
+    <img src="{% static 'produto/images/celular.jpg' %}" alt="Celular">
+
+
+Agora está na hora de adicionarmos tags de bloco para este arquivo!
+
+E agora ponha tudo entre {% block conteudo %} e {% endblock %}, conforme  vem abaixo, e  acrescente a palavra
+Produtos entre {% block titulo %} e {% endblock %}.
+
+projeto/templates/produto/index.html
+
+{% block titulo %}Produtos{% endblock %}
+
+{% block conteudo %}
+    {{ frase }}
+    <br>
+    <a href="{% url "produto:pagina1" %}">Página 1</a>
+    <br>
+    <br>
+    <img src="{% static 'produto/images/celular.jpg' %}" alt="Celular">
+{% endblock %}
+
+Apenas uma coisa está faltando. Precisamos conectar estes dois templates. Isto é o que o tag extends faz:
+
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block titulo %}Produtos{% endblock %}
+
+{% block conteudo %}
+    {{ frase }}
+    <br>
+    <a href="{% url "produto:pagina1" %}">Página 1</a>
+    <br>
+    <br>
+    <img src="{% static 'produto/images/celular.jpg' %}" alt="Celular">
+{% endblock %}
+
+É isto!!!
+
+Agora ponha o servidor no ar com: python manage.py runserver
+e submeta uma requisição para http:// localhost:8000/produto
+
+
+

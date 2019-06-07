@@ -1,0 +1,451 @@
+﻿**************************************************************************************************************
+**********                              C R I A N D O   M O D E L O S                               **********
+**************************************************************************************************************
+
+Quando você adiciona uma aplicação a um projeto Django é preciso editar o arquivo  settings.py no diretório do
+projeto. Neste arquivo, você irá encontrar uma declaração para as aplicações instaladas.
+
+INSTALLED_APPS = (
+   'django.contrib.admin',
+   'django.contrib.auth',
+   'django.contrib.contenttypes',
+   'django.contrib.sessions',
+   'django.contrib.messages',
+   'django.contrib.staticfiles',
+   'produto',     <==================  Acrescentar esta linha.
+)
+
+CONFIGURAÇÃO DO BANCO DE DADOS
+==============================
+
+Agora abra o arquivo loja/settings.py.
+
+Por default, a configuração utiliza o SQLite.
+
+Se você deseja usar outro banco de dados, instale o SGBD e mude as seguintes chaves em DATABASES 'default'  em
+settings:
+
+ENGINE – Ou 'django.db.backends.sqlite3',
+            'django.db.backends.postgresql',
+            'django.db.backends.mysql', ou
+            'django.db.backends.oracle'.
+
+NAME – O nome do seu banco de dados. Se você estiver usando o SQLite, o banco de dados será um arquivo no  seu
+       computador. Neste caso, NAME deve ser o caminho absoluto, incluindo o nome do arquivo. O valor default,
+       os.path.join(BASE_DIR, 'db.sqlite3'), irá armazenar o arquivo no diretório do seu projeto.
+
+Se você não estiver utilizando o SQLite, configurações adicionais tais como USER, PASSWORD, e HOST  devem  ser
+adicionadas. Para mais detalhes, veja a documentação de referência para DATABASES.
+
+Documentação para MySQL:
+
+# Instalar (se já não estiver instalado): pip install Django==2.1.1
+# Instalar o driver para mySql que suporta python 3: pip install mysqlclient
+
+# Para criar usuário no MySql
+
+# CREATE USER 'carlos'@'localhost' IDENTIFIED BY 'carlos';
+# GRANT ALL PRIVILEGES ON * . * TO 'carlos'@'localhost';
+# FLUSH PRIVILEGES;
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'banco',
+        'USER': 'carlos',
+        'PASSWORD': 'carlos',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+    }
+}
+
+Para outros bancos de dados em vez do SQLite
+--------------------------------------------
+
+Se você está utilizando um outro banco de  dados que não o SQLite, esteja  certo de já ter  criado o banco  de
+dados.
+
+Esteja certo também que o usuário  provido em projeto/settings.py  possua o privilégio de  “create database”.  Isto
+permite  a criação  automática de  um banco  de dados  de teste  que será  necessário em outro  tutorial, mais
+adiante.
+
+Se você estiver utilizando o SQLite, não é preciso criar  nada antecipadamente - o  arquivo de banco de  dados
+será criado automaticamente quando necessário.
+
+Por default, INSTALLED_APPS contém as seguintes apps, que vêm com o Django:
+---------------------------------------------------------------------------
+
+django.contrib.admin – O site admin.
+django.contrib.auth – Um sistema de authentication.
+django.contrib.contenttypes – Um framework para tipos de conteúdo.
+django.contrib.sessions – Um framework para sessões.
+django.contrib.messages – Um framework de mensagens.
+django.contrib.staticfiles – Um framework para gerenciar arquivos estáticos.
+
+Estas aplicações são incluídas por default.
+
+Algumas destas aplicações utilizam pelo menos uma tabela de banco de dados, logo, precisamos criar as  tabelas
+no banco de dados antes de podermos utilizá-las. Para fazer isso, execute o seguinte comando:
+
+O comando migrate olha as configurações das INSTALLED_APPS e cria as tabelas de banco de dados necessárias  de
+acordo com as configurações de banco de dados no seu arquivo projeto/settings.py e as migrations de banco de dados
+enviadas com a aplicação.
+
+
+***************************************************************************
+**
+python manage.py migrate
+**
+***************************************************************************
+
+CRIANDO MODELS
+==============
+
+Agora vamos definir o modelo do BD, isto é, essencialmente, o layout do banco de dados.
+
+Filosofia
+
+O objetivo é definir o seu modelo em um lugar e automaticamente derivar coisas a partir dele - DRY principle.
+
+Isto inclui as migrations - diferentemente de Ruby On Rails, por exemplo, migrations são totalmente  derivadas
+do seu modelo, e são essencialmente apenas uma história que o Django pode executar para atualizar seu  esquema
+de banco de dados para casar com o seu modelo corrente.
+
+Na nossa aplicação de produto, vamos inicialmente criar 2 modelos: Produto e Categoria.
+
+Cada produto possui uma categoria.
+
+Estes conceitos são representados por simples classes Python. Edite o arquivo produto/models.py de tal forma
+que ele fique assim:
+
+from django.db import models
+
+class Categoria(models.Model):
+    nome = models.CharField(max_length=200, db_index=True)
+    slug = models.SlugField(max_length=200, db_index=True, unique=True)
+
+    class Meta:
+        db_table = 'categoria'
+        ordering = ('nome',)
+        verbose_name = 'categoria'
+        verbose_name_plural = 'categorias'
+
+    def __str__(self):
+        return self.nome
+
+class Produto(models.Model):
+    categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
+    nome = models.CharField(max_length=200, db_index=True)
+    slug = models.SlugField(max_length=200, db_index=True)
+    # imagem = models.ImageField(upload_to='produtos', blank=True)
+    imagem = models.CharField(max_length=200, blank=True)
+    descricao = models.TextField(blank=True)
+    preco = models.DecimalField(max_digits=10, decimal_places=2)
+    estoque = models.PositiveIntegerField()
+    disponivel = models.BooleanField(default=True)
+    data_cadastramento = models.DateTimeField(auto_now_add=True)
+    data_atualizacao = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ('-data_cadastramento',)
+
+    def __str__(self):
+        return self.nome
+
+Para podermos utilizar um campo do tipo ImageField é preciso instalar o Pillow.  Neste  caso,  seria  preciso 
+executar o comando a seguir.
+
+pip install Pillow
+
+Cada modelo é  representado por uma classe que é  uma subclasse de django.db.models.Model.  Cada modelo possui
+uma série de variáveis de classe, e cada uma representa um campo do banco de dados.
+
+Cada campo é representado por uma  instância da classe Field, i.é, CharField para  campos do tipo character  e
+DateTimeField para datetimes. Isto diz ao Django que tipo de dado cada campo armazena.
+
+O nome de  cada instância de  Field, é o nome do campo. Você irá utilizar  esse  valor no seu código Python, e
+o seu banco de dados irá utilizá-lo como nome de coluna.
+
+Você pode utilizar um primeiro argumento opcional para um  campo para designar um nome  para o campo fácil  de
+ler por humanos. Ele é utilizado na documentação.
+
+Algumas classes do tipo Field possuem argumentos obrigatórios. CharField, por exemplo, requerem que vc forneça
+um max_length. Isto é utilizado não apenas pelo esquema do banco de dados, mas também em validações.
+
+Um campo também pode ter vários argumentos opcionais; como exemplo, designamos blank=True para o campo imagem.
+
+E finalmente, note que um relacionamento é definido utilizando ForeignKey. Isto diz ao Django que cada Produto
+está relacionado a  uma  única  Categoria. Django  suporta todos os relacionamentos comuns de  banco de  dados:
+many-to-one, many-to-many, e one-to-one.
+
+Agora que o modelo da aplicação produto já foi definido, vamos executar outro comando:
+
+***************************************************************************
+**
+python manage.py makemigrations produto
+**
+***************************************************************************
+
+Executando makemigrations, vc está dizendo ao Django que vc efetuou algumas modificações no seu  modelo e que
+você gostaria que as modificações fossem armazenadas como uma migration.
+
+Migrations são como o  Django armazena as  modificações no seu  modelo (e consequentemente no  seu esquema  de
+banco de dados)
+
+- Elas (as migrações) são apenas arquivos em disco. Você pode ler a migração para o seu modelo se vc quiser; É
+o arquivo produto/migrations/0001_initial.py. Não se preocupe, vc não é  obrigado a ler as  migrações que  o
+Django faz.
+
+O comando sqlmigrate não executa as migrações para o seu banco de dados - ele apenas imprime na tela para  que
+você possa ver o SQL que o Django gerou.
+
+***************************************************************************
+**
+python manage.py sqlmigrate produto 0001
+**
+***************************************************************************
+
+Se você estiver interessado, vc também pode executar o comando python manage.py check;  Este comando  verifica
+se  existem problemas  no seu projeto.  Este comando não executa  nenhuma migração e não  modifica o banco  de
+dados.
+
+***************************************************************************
+**
+python manage.py check
+**
+***************************************************************************
+
+Agora execute o comando migrate novamente para criar as tabelas no seu banco de dados:
+
+***************************************************************************
+**
+python manage.py migrate
+**
+***************************************************************************
+
+Nomes de tabelas são automaticamente gerados combinando o  nome da aplicação (produto) e o  nome do modelo –
+Produto e Categoria.
+
+Chaves primárias (IDs) são adicionadas automaticamente.
+Por convenção, Django adiciona "_id" ao nome do campo chave estrangeira.
+Todas estas 3 características podem ser customizadas.
+
+A grande vantagem  em efetuar  migrações a medida  que o modelo  evolui é  que os  dados  existentes  não  são
+perdidos, isto é, não é necessário dropar o banco de dados e recriar todas as tabelas.
+
+Mudanças no modelo ocorrem em 3 passos:
+
+1. Modifique seu modelo (em models.py).
+2. Execute python manage.py makemigrations para criar as migrations para estas modificações
+3. Execute python manage.py migrate para aplicar estas modificações no banco de dados
+
+O comando migrate  pega todas as  migrações que ainda  não foram  aplicadas (Django acompanha  quais já  foram
+aplicadas através de uma tabela do banco de dados denominada django_migrations) e as executa contra o banco de
+dados, sincronizando as mudanças que você fez nos seus modelos com o esquema do banco de dados.
+
+
+Utilizando a API
+
+- Abra a Python Console.
+
+***************************************************************************
+**
+from produto.models import Produto, Categoria
+Categoria.objects.all()
+<QuerySet []>
+
+c = Categoria(nome="Eletrodoméstico", slug="eletrodomestico")
+c.save()
+c.id
+1
+
+c.nome
+"Eletrodoméstico"
+
+c.nome = "Computador"
+c.slug = "computador"
+c.save()
+Categoria.objects.all()
+<QuerySet [<Categoria: Categoria object>]>
+
+**
+***************************************************************************
+
+[<Categoria: Categoria object>] é uma representação pouco útil do objeto Categoria. Vamos corrigir isso  editando
+o modelo Categoria em produto/models.py e adicionando o método __str__() a Categoria e Produto, conforme vem
+abaixo.
+
+***************************************************************************
+**
+from django.db import models
+
+class Categoria(models.Model):
+    nome = models.CharField(max_length=200, db_index=True)
+    slug = models.SlugField(max_length=200, db_index=True, unique=True)
+
+    class Meta:
+        ordering = ('nome',)
+        verbose_name = 'categoria'
+        verbose_name_plural = 'categorias'
+
+    def __str__(self):
+        return self.nome
+
+class Produto(models.Model):
+    categoria = models.ForeignKey(Categoria)
+    nome = models.CharField(max_length=200, db_index=True)
+    slug = models.SlugField(max_length=200, db_index=True)
+    imagem = models.TextField(blank=True)
+    descricao = models.TextField(blank=True)
+    preco = models.DecimalField(max_digits=10, decimal_places=2)
+    estoque = models.PositiveIntegerField()
+    disponivel = models.BooleanField(default=True)
+    data_cadastramento = models.DateTimeField(auto_now_add=True)
+    data_atualizacao = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ('-data_cadastramento',)
+
+    def __str__(self):
+        return self.nome
+**
+***************************************************************************
+
+É importante adicionar o método __str__() aos seus  modelos, não apenas  para a sua  conveniência quando  você
+utiliza o prompt interativo,  mas também  porque as representações de  objetos são  utilizadas pela  interface
+administrativa gerada automaticamente pelo Django.
+
+Note que estes são métodos Python normais.
+
+E agora vamos entrar na Python Console novamente e executar mais alguns comandos:
+
+***************************************************************************
+** # Para ter certeza que o método __str__() funcionou.
+
+- Abra a Python Console.
+
+from produto.models import Categoria, Produto
+Categoria.objects.all()
+<QuerySet [<Categoria: Categoria object>]>   # Sem o método __str__()
+<QuerySet [<Categoria: Computador>]>         # Com o método __str__()
+
+c = Categoria.objects.get(id=1)
+<QuerySet [<Categoria: Computador>]>
+
+Categoria.objects.filter(nome__startswith='Comp')
+<QuerySet [<Categoria: Computador>]>
+
+p = Produto(nome='Notebook Dell Vostro 3458 i3', slug='notebook-del-vostro-3458-i3', descricao="Notebook Dell Dell Vostro 3458 i3 4GB 500GB DVDRW 14 Windows 10 Pro", preco=2229.90, estoque=7, disponivel=True, categoria=c)
+p.save()
+p.id
+1
+
+p = Produto(nome='Notebook Dell Inspiron 15 7000', slug='notebook-del-inspiron-15-5000', descricao="Notebook Dell 15 7000 2 em 1 ultrafino c/ intel core", preco=3399.00, estoque=10, disponivel=True, categoria=c)
+p.save()
+p.id
+2
+
+# Obter os produtos que foram cadastrados este ano.
+
+from django.utils import timezone
+ano_corrente = timezone.now().year
+Produto.objects.filter(data_cadastramento__year=ano_corrente)
+<QuerySet [<Produto: Notebook Dell Inspiron 15 7000>, <Produto: Notebook Dell Vostro 3458 i3>]>
+
+# Requisita um ID que não existe, isto irá lançar uma exceção.
+Categoria.objects.get(id=2)
+Traceback (most recent call last):
+...
+DoesNotExist: Categoria matching query does not exist.
+
+# Efetuar uma pesquisa utilizando como filtro uma chave primária é o caso mais comum
+# O seguinte é idêntico a Categoria.objects.get(id=1).
+Categoria.objects.get(pk=1)
+<Categoria: Computador>
+
+Agora vamos adicionar um novo método customizado:
+
+***************************************************************************
+**
+import datetime
+from django.db import models
+from django.utils import timezone
+
+class Produto(models.Model):
+    # ...
+    def cadastrado_recentemente(self):
+        return self.data_cadastramento >= timezone.now() - datetime.timedelta(days=1)
+**
+***************************************************************************
+
+from produto.models import Categoria, Produto
+
+# Para verificar que o método customizado funcionou.
+p = Produto.objects.get(pk=1)
+p.cadastrado_recentemente()
+True
+
+# Atribuir a uma Pergunta, duas Opcoes de resposta. A chamada ao método create constrói um novo objeto  Opcao,
+# executa o comando INSERT, adiciona a opcao ao conjunto de opções disponíveis e retorna o novo objeto  Opcao.
+# Django cria  um conjunto  para armazenar  o "outro lado"  de uma  relação de  Chave  Estrangeira, (isto é, a
+# Pergunta da Opcao) que pode ser acessada através da API.
+c = Categoria.objects.get(pk=1)
+
+# Exibe os produtos relacionados com a Categoria (o conjunto (set) de produtos) -- nenhum até agora.
+c.produto_set.all()
+<QuerySet [<Produto: Notebook Dell Inspiron 15 7000>, <Produto: Notebook Dell Vostro 3458 i3>]>
+
+# Vamos criar o terceiro produto
+c.produto_set.create(nome='Alienware 17 Notebook Gamer', slug='alienware_17_notebook_gamer', descricao="Alienware 17 Notebook Gamer c/ intel core", preco=13469.00, estoque=4, disponivel=True)
+<Produto: Alienware 17 Notebook Gamer>
+
+p = Produto.objects.get(pk=3)
+p.categoria
+<Categoria: Computador>
+
+c = Categoria.objects.get(pk=1)
+c.produto_set.all()
+
+# Adicionar related_name na classe Produto para o campo categoria
+class Produto(models.Model):
+    categoria = models.ForeignKey(Categoria, related_name='produtos')
+
+from produto.models import Categoria, Produto
+
+c = Categoria.objects.get(pk=1)
+c.produto_set.all()  <== Não funciona mais
+
+c.produtos.all()
+<QuerySet [<Produto: Alienware 17 Notebook Gamer>, <Produto: Notebook Dell Inspiron 15 7000>, <Produto: Notebook Dell Vostro 3458 i3>]>
+
+# A API automaticamente segue os relacionamentos. Use dois underscores para separar relacionamentos.
+# Isto funciona em qq nível de profundidade; não há limite.
+
+# Encontre todas as Categorias dos Produtos cuja data_cadastramento é deste ano
+# (reutilizando a variável 'ano_corrente' que criamos acima).
+
+from django.utils import timezone
+ano_corrente = timezone.now().year
+Categoria.objects.filter(produtos__data_cadastramento__year=ano_corrente).distinct()
+<QuerySet [<Categoria: Computador>]>
+
+# Retorna vários objetos Opcao de vários objetos Pergunta.
+Produto.objects.filter(categoria__nome__startswith='Comp')
+<QuerySet [<Produto: Alienware 17 Notebook Gamer>, <Produto: Notebook Dell Inspiron 15 7000>, <Produto: Notebook Dell Vostro 3458 i3>]>
+
+# Vamos deletar um dos produtos. Utilize delete() para isso.
+op = c.produtos.filter(nome__startswith='Alien')
+
+# Este método  deleta imediatamenteo  objeto e retorna o  número de objetos  deletados e  um dictionary  com o
+# número de deleções por tipo de objeto.
+op.delete()                      # A variável op continua apontando para o objeto removido
+(1, {'produto.Produto': 1})
+
+** -----------------------------------------------------------------------------------------------------------
+
+Para mais informações sobre como acessar objetos relacionados (relações entre classes do modelo) veja em:
+https://docs.djangoproject.com/en/2.0/ref/models/relations/
+
+Para mais informações em como utilizar underscores duplos para realizar pesquisas em campos através da
+API, veja em: https://docs.djangoproject.com/en/2.0/topics/db/queries/#field-lookups-intro
+
