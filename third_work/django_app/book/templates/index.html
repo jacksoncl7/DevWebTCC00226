@@ -15,13 +15,13 @@
     <div class="col-md-6 col-lg-4">
       <div class="card mt-4" style="width: 18rem;">
         <div class="card-body">
-          <img src="{% static '/book/images/trab1.jpeg' %}" class="img-fluid pull-xs-left" alt="..." width="180px">
+          <img src="{% static '/book/images/trab2.jpeg' %}" class="img-fluid pull-xs-left" alt="" width="180px">
           <h5 class="card-title">FULLMETAL ALCHEMIST</h5>
           <p class="card-text">Hiromu Arakawa</p>
           <span class="danger">
             <p>R$ 17,90</p>
           </span>
-          <a href="product.html" class="btn btn-outline-info">
+          <a href="{% url 'prod' %}" class="btn btn-outline-info">
             <span style="padding:100px">
               <i class="fas fa-shopping-cart"></i>
             </span>
@@ -32,6 +32,7 @@
     <!-- endfor -->
   </div>
 </main>
+
 {% endblock %}
 
 {% block domready %}
