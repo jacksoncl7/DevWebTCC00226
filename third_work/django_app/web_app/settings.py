@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'book'
+    'book',
+    'user'
 ]
 
 MIDDLEWARE = [
@@ -55,8 +56,9 @@ ROOT_URLCONF = 'web_app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'book','templates')
-
+        'DIRS': [
+                os.path.join(BASE_DIR, 'book','templates'),
+                os.path.join(BASE_DIR, 'user','templates')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -115,7 +117,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/

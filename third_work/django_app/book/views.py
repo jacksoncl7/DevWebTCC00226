@@ -10,8 +10,8 @@ def index(request):
 
 def prod(request):
     prod = ('uniqueProduct')
-    return render(request, 'product.html', {'product' : prod})
+    return render(request, 'book/product.html', {'product' : prod})
 
 def cart(request):
     prods = ('here may has','a lot of ', 'objects')
-    return render(request, 'cart.html', { 'cart' : prods } )
+    return render(request, 'book/cart.html', { 'cart' : prods } )
