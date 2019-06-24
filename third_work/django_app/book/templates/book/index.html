@@ -12,14 +12,16 @@
 <main class="container mt-5">
   <div class="row text-center">
     <!-- for -->
+    {% if books %}
+    {% for book in books %}
     <div class="col-md-6 col-lg-4">
       <div class="card mt-4" style="width: 18rem;">
         <div class="card-body">
-          <img src="{% static '/book/images/trab1.jpeg' %}" class="img-fluid pull-xs-left" alt="" width="180px">
-          <h5 class="card-title">FULLMETAL ALCHEMIST</h5>
-          <p class="card-text">Hiromu Arakawa</p>
+          <img src="{{ book.img_path }}" class="img-fluid pull-xs-left" alt="" width="180px">
+          <h5 class="card-title">{{ book.name }}</h5>
+          <p class="card-text">{{ book.author }}</p>
           <span class="danger">
-            <p>R$ 17,90</p>
+            <p>R${{ book.price }}</p>
           </span>
           <a href="{% url 'book:prod' %}" class="btn btn-outline-info">
             <span style="padding:100px">
@@ -30,6 +32,12 @@
       </div>
     </div>
     <!-- endfor -->
+    {% endfor %}
+    {% else %}
+    <div class="container mt-4">
+      Não há produtos disponiveis
+    </div>
+    {% endif %}
   </div>
 </main>
 {% endblock %}
