@@ -17,13 +17,13 @@
     <div class="col-md-6 col-lg-4">
       <div class="card mt-4" style="width: 18rem;">
         <div class="card-body">
-          <img src="{{ book.img_path }}" class="img-fluid pull-xs-left" alt="" width="180px">
+          <img src="{% static 'book/images/' %}{{book.img_path}}" class="img-fluid pull-xs-left" alt="" width="180px">
           <h5 class="card-title">{{ book.name }}</h5>
           <p class="card-text">{{ book.author }}</p>
           <span class="danger">
             <p>R${{ book.price }}</p>
           </span>
-          <a href="{% url 'book:prod' %}" class="btn btn-outline-info">
+          <a href="{% url 'book:prod' book.id %}" class="btn btn-outline-info">
             <span style="padding:100px">
               <i class="fas fa-shopping-cart"></i>
             </span>

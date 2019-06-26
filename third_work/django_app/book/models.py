@@ -13,6 +13,8 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+class Cart(models.Model):
+    pass
 
 class Book(models.Model):
     category = models.ForeignKey(Category, on_delete=models.DO_NOTHING)

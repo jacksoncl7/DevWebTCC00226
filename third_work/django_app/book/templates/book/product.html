@@ -11,17 +11,17 @@
 <main class="container" style="margin-top: 70px;">
   <strong>
     <span class="mt-4">
-      <h1>Nome Produto</h1>
+      <h1>{{book.name}}</h1>
     </span>
   </strong>
   <div class="row">
     <div class="col-lg-8">
-
+      {% if book %}
       <div class="card mt-2">
         <div class="card-body">
-          <img src="{% static 'book/images/trab1.jpeg' %}" width="300px" alt="descricao do produto">
-          <p class="card-text">Mini-Descricao</p>
-          <p class="card-text">R$ 00,00</p>
+          <img src="{% static 'book/images/' %}{{book.img_path}}" width="300px" alt="Book Picture">
+          <p class="card-text">{{book.desc}}</p>
+          <p class="card-text">R$ {{book.price}}</p>
           <div class="d-flex">
             <div class="dropdown  border border-info">
               <button type="button" class="btn btn-primary-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -37,13 +37,17 @@
         </div>
       </div>
     </div>
-
+    {% else %}
+    <div class="">
+      Produto não encontrado
+    </div>
+    {% endif %}
     <div class="col-lg-4">
       <div class="card border border-info">
         <div class="card-body">
           <h5 class="card-title">Informações de Produto</h5>
           <p class="card-text">Quantidade Total <span>0</span> </p>
-          <p class="card-text">Preço Total <span>R$ 00,00</span> </p>
+          <p class="card-text">Preço Total <span id='total-price'>R$ 00,00</span> </p>
           <a href="#" class="btn btn-outline-info">
             <span class="text-center" style="padding-right:130px;padding-left:130px">
               <i class="fas fa-shopping-cart"></i>
