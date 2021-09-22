@@ -1,3 +1,5 @@
+# Intro DevWeb
+
 Este repositório é um conjunto de trabalho aplicados como método de avalição na disciplina
 TCC00226 - Desenvolvimento WEB.
 
@@ -7,25 +9,21 @@ o paradigma de desenvolvimento para WEB, adotando a arquitetura MVC.
 
 Consta como conteúdo:
 
-Conteúdo           - Ferramenta Adotada
+| Conteúdo  | Ferramenta Adotada |
+| - | - |
+| Noções de Frontend | HTML,  CSS,  JS (ferramentas de apoio JQuery e Bootstrap) |
+| Noções de Backend  | Django 2.x |
 
-Noções de Frontend - HTML CSS JS (ferramentas de apoio JQuery e Bootstrap)
+# Quanto aos diretórios:
 
-Noções de Backend  - Django 2.x
+* **frist_work:** trabaho referente a introducao em frontend.
 
-Quanto aos diretórios:
+* **second_work:** Introducao ao JQuery e utilizacao da mesma para tratar eventos. 
 
-No diretório 'frist_work' há o passo introdutório as técnologias de frontend.
+* **third_work:** INtroducao em backend e fixacao de contrudos de frontend.
 
-No diretório 'second_work' há o passo sequente ao introdutório nas tecnologias 
-frontend, enfaze em eventos utilizando a library jQuery. 
-
-No diretório 'third_work' há o passo introdutório nas tecnologias backend nele também
-trabalhamos a aplicação das tecnologias frontend, já estudados.
-
--------------------------------CONFIGURACAO----------------------------------------------
+# OBS
 
 Os arquivos de assets que são compartilhados estão na pasta assets mais externa, para não
 gerar replicas desnecessárias, ficarão assim até que eu ache outra forma mais elegante 
 de solucionar o problema de réplicas desnecessárias.
-
